@@ -1,0 +1,88 @@
+
+<!-- ==================== 四、（一）核心创新点 ==================== -->
+<div class="page">
+  <div class="rhead"><div><b>RSI-EdgeVision</b> · 基于 RDK-X5 的遥感图像边缘智能识别终端</div><div>四、创新点与应用价值</div></div>
+  <h1 class="bar">四、创新点与应用价值</h1>
+  <h2>（一）核心创新点</h2>
+  <p>本作品的创新并非单点突破，而是「算法三项 + 端侧三项」的组合：算法侧针对变化检测的三个固有难点提出专门结构，端侧三项则打通从浮点权重到可交付系统的三个工程断点。</p>
+
+  <table>
+    <tr><th style="width:52px">序号</th><th style="width:35%">创新点</th><th>价值</th></tr>
+    <tr><td class="k">①</td><td><b>RTRF 互易时相响应融合</b><br>同时构造差异、能量与一致性三种响应，再做通道路由与空间路由</td><td>把光照阴影、季节差异等伪变化与真实地物变化区分开，从源头降低误报</td></tr>
+    <tr><td class="k">②</td><td><b>MSRB 多尺度细化桥</b><br>尺度上下文聚合 + 跨尺度细节融合</td><td>兼顾从单栋建筑到大片区开发的尺度跨度，缓解小目标漏检</td></tr>
+    <tr><td class="k">③</td><td><b>SAM 注意力解码</b><br>解码阶段对通道与空间位置重新加权</td><td>守住道路、田埂、围栏等细长边界，提升面积统计的可用性</td></tr>
+    <tr><td class="k">④</td><td><b>面向边缘芯片的结构前置适配</b><br>以目标架构的算子集与数值格式反向约束网络结构与导出方式</td><td>避免「先在服务器上做精、再想办法塞进板子」的返工循环</td></tr>
+    <tr><td class="k">⑤</td><td><b>真实数据校准的量化策略</b><br>60 组真实样本校准，配合浮点自检交叉验证</td><td>在压缩约 68% 体积的同时保住精度，形成可复现的量化路径</td></tr>
+    <tr><td class="k">⑥</td><td><b>端侧「可视化—可量化—可解释」闭环</b><br>六视图联动、四色误差图、精度指标与视觉大模型语义解释集成于同一界面</td><td>把检测结果从单个二值掩膜，升级为一线人员可直接使用与判断的信息</td></tr>
+  </table>
+
+  <div class="tip"><b>三项算法创新 + 三项端侧创新</b>，共同构成一套「为边缘硬件而设计」的变化检测方案：算法在结构上就为量化留出余量，工程流程又用真实数据把量化误差压回可接受范围，二者互为前提。</div>
+  <div class="rfoot">13</div>
+</div>
+
+<!-- ==================== 四、（二）应用场景与推广 ==================== -->
+<div class="page">
+  <div class="rhead"><div><b>RSI-EdgeVision</b> · 基于 RDK-X5 的遥感图像边缘智能识别终端</div><div>四、创新点与应用价值</div></div>
+  <h1 class="bar">四、创新点与应用价值</h1>
+  <h2>（二）应用场景与推广</h2>
+  <p>本作品面向的是「需要到现场、且现场没有网」的一类遥感解译需求。端侧推理把原本依赖云端的能力前移到作业现场，在三个方向上直接对应真实业务：</p>
+
+  <table>
+    <tr><th style="width:132px">应用场景</th><th style="width:30%">核心需求</th><th>端侧方案提供的价值</th></tr>
+    <tr><td class="k">灾害评估</td><td>尽快掌握损毁范围与面积</td><td>现场直接给出变化区域与面积统计，不必等待影像回传与云端排队，为救援决策争取时间</td></tr>
+    <tr><td class="k">城市更新与违建监管</td><td>定期比对新增建筑与地表变化</td><td>自动圈出变化图斑，把「人工逐幅排查」变为「按图斑核查」，显著减少工作量</td></tr>
+    <tr><td class="k">国土动态监测</td><td>需要可核验的图斑与面积数据</td><td>四色误差图与逐像素指标提供可复核依据，便于形成规范的监测记录</td></tr>
+  </table>
+
+  <h3>三种部署形态</h3>
+  <div class="cards">
+    <div class="card"><div class="n">无人机</div><div class="t">机载端侧推理<br>作业区无网亦可出结果</div></div>
+    <div class="card"><div class="n">地面巡检</div><div class="t">巡检设备就地检测<br>结果当场可查</div></div>
+    <div class="card"><div class="n">调度平台</div><div class="t">变化图斑与面积数据<br>回传至指挥与监管系统</div></div>
+  </div>
+
+  <h3>可移植性与演进方向</h3>
+  <p>整条链路与具体模型解耦：更换网络定义与权重，重新执行导出与量化即可平移到其他边缘平台，具备良好的可移植性。在此基础上，后续可沿两个方向延伸——一是把单幅检测扩展为<b>批量评估与长期序列比对</b>，形成区域变化的趋势记录；二是把变化图斑接入<b>风险预警看板</b>，由「发现变化」进一步走到「评估风险、提示处置」，使系统从检测工具演进为服务于国土监管与应急调度的端侧感知节点。</p>
+    <div class="tip"><b>一句话总结：</b>用自研轻量化算法把变化检测能力压缩进 <b>3.2 MB</b>，再把它交给一块 <b>4 GB</b> 的国产边缘板卡——让遥感解译第一次可以发生在数据产生的地方。</div>
+  <div class="rfoot">14</div>
+</div>
+
+<!-- ==================== 五、附录 ==================== -->
+<div class="page">
+  <div class="rhead"><div><b>RSI-EdgeVision</b> · 基于 RDK-X5 的遥感图像边缘智能识别终端</div><div>五、附录</div></div>
+  <h1 class="bar">五、附录</h1>
+  <h2>（一）关键参数速查</h2>
+  <table>
+    <tr><th style="width:110px">环节</th><th>参数</th></tr>
+    <tr><td class="k">训练</td><td>骨干 MobileNetV2（权重共享）；总参数量 2,477,892；输入 x1 / x2 各 <code>[1,3,256,256]</code>，输出 <code>change_map</code>；浮点权重 10.2 MB</td></tr>
+    <tr><td class="k">导出</td><td>PyTorch → ONNX，opset <b>11</b>；导出前校验输出形状为 <code>(1,1,256,256)</code></td></tr>
+    <tr><td class="k">量化</td><td>hb_mapper 1.24.3；<code>march = bayes-e</code>；int8；校准 60 组真实样本，每组 786,432 字节</td></tr>
+    <tr><td class="k">板端</td><td>模型 <code>repbnet_cd.bin</code>（3,279,032 字节）；运行时 <code>hbm_runtime</code>；判定阈值 0.5</td></tr>
+    <tr><td class="k">指标</td><td>LEVIR-CD 全量 2048 对：P 0.8782 / R 0.8517 / F1 0.8648 / IoU 0.7617；UAV：F1 0.7752 / IoU 0.6329</td></tr>
+    <tr><td class="k">界面</td><td>板载 1024×600 IPS 触摸屏；本地 Web 服务，浏览器访问；模型常驻内存只加载一次</td></tr>
+  </table>
+
+  <h2>（二）端侧文件清单与复现步骤</h2>
+  <table>
+    <tr><th style="width:142px">文件</th><th>作用</th></tr>
+    <tr><td class="k">repbnet_cd.bin</td><td>板端可执行的 int8 定点模型，全部推理的基础</td></tr>
+    <tr><td class="k">infer.py</td><td>推理封装：预处理、模型加载、概率图与统计量计算</td></tr>
+    <tr><td class="k">webapp.py</td><td>端侧工作站主程序，提供界面与各功能接口</td></tr>
+    <tr><td class="k">explain.py</td><td>调用视觉大模型，生成变化的中文语义解释</td></tr>
+    <tr><td class="k">batch_eval.py</td><td>批量评估脚本，逐对推理并计算整体精度指标</td></tr>
+    <tr><td class="k">static / templates</td><td>前端样式、交互脚本与页面模板</td></tr>
+    <tr><td class="k">demo</td><td>演示用影像对与真值（含 A / B / label 子目录）</td></tr>
+  </table>
+
+  <p class="noind"><b>复现步骤（板端）：</b></p>
+  <div style="background:#0d1626;color:#cfe0f5;padding:8px 12px;border-radius:8px;font-family:Consolas,monospace;
+       font-size:9.5pt;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;"># 1. 启动端侧工作站（界面自动在全屏浏览器中打开）
+cd ~/deploy &amp;&amp; /usr/bin/python3 webapp.py
+# 2. 批量评估：对测试集逐对推理并给出整体指标
+/usr/bin/python3 batch_eval.py --data demo --bin repbnet_cd.bin --thresh 0.5
+# 3. 单对影像的命令行推理与 AI 解释
+/usr/bin/python3 explain.py demo/A/test_2_0.png demo/B/test_2_0.png</div>
+
+  <div class="tip"><b>提交说明：</b>作品方案按大赛要求统一保存为 PDF 格式，文件大小不超过 10 M；文中图表均来自板端实测输出，可按上述步骤重新生成。</div>
+  <div class="rfoot">15</div>
+</div>

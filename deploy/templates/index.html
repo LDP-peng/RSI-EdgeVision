@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>边缘遥感变化检测工作站</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <h1>边缘遥感变化检测工作站</h1>
+    <p>基于端侧部署的实时空间遥感变化检测系统</p>
+  </div>
+  <div class="source" id="sourceInfo">当前数据源：未选择</div>
+</header>
+
+<div class="toolbar">
+  <button class="btn primary" id="btnList">读取目录</button>
+  <button class="btn" id="btnDetect">开始检测</button>
+  <button class="btn" id="btnEval">影像评估</button>
+  <button class="btn" id="btnExplain">AI 解释</button>
+  <button class="btn" id="btnExport">导出结果</button>
+  <button class="btn" id="btnReport">导出评估报告</button>
+</div>
+
+<div class="controlbar">
+  <div class="ctl">
+    <label>数据目录</label>
+    <input id="dataDir" value="/home/sunrise/deploy/test_256" size="42" spellcheck="false">
+  </div>
+  <div class="ctl">
+    <label>影像对</label>
+    <select id="pairSel"></select>
+  </div>
+  <div class="ctl">
+    <label>阈值 <b id="threshVal">0.5</b></label>
+    <input type="range" id="thresh" min="0.1" max="0.9" step="0.05" value="0.5">
+  </div>
+  <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+</div>
+
+<div class="cards">
+  <div class="card"><span>Runtime</span><b id="cRuntime">-</b></div>
+  <div class="card"><span>Model</span><b id="cModel">-</b></div>
+  <div class="card"><span>Engine</span><b id="cEngine">-</b></div>
+  <div class="card"><span>Device</span><b id="cDevice">-</b></div>
+  <div class="card"><span>Server</span><b id="cServer">-</b></div>
+</div>
+
+<div class="monitor-card">
+  <h3>设备实时监控</h3>
+  <canvas id="spark" width="820" height="140"></canvas>
+  <div class="spark-legend"><span class="s s-t">温度</span><span class="s s-m">内存</span><span class="s s-c">CPU</span></div>
+</div>
+
+<main class="grid">
+  <section class="panel-left">
+    <div class="img-card compare-card">
+      <h3><span class="tag">A/B</span> 前后时相对比</h3>
+      <div class="compare hud" id="compare">
+        <img id="compareA" alt="A">
+        <img class="b" id="compareB" alt="B">
+        <div class="compare-handle" id="compareHandle"></div>
+      </div>
+      <p id="capCompare">左右拖动查看 T0 / T1 变化</p>
+    </div>
+
+    <div class="img-card"><h3><span class="tag">T0</span> 原始影像</h3><div class="imgwrap hud"><img id="imgA" alt="A"></div><p id="capA">-</p></div>
+    <div class="img-card"><h3><span class="tag">T1</span> 变化影像</h3><div class="imgwrap hud"><img id="imgB" alt="B"></div><p id="capB">-</p></div>
+    <div class="img-card"><h3><span class="tag">L</span> Label 手动标注</h3><div class="imgwrap hud"><img id="imgLabel" alt="Label"></div><p id="capL">-</p></div>
+    <div class="img-card"><h3><span class="tag">P</span> Pred Mask 预测掩膜</h3><div class="imgwrap hud"><img id="imgMask" alt="Mask"></div><p id="capM">-</p></div>
+    <div class="img-card"><h3><span class="tag">O</span> 叠加图</h3><div class="imgwrap hud"><img id="imgOverlay" alt="Overlay"><div class="hlbox" id="hlBox" style="display:none"></div></div><p id="capO">-</p></div>
+    <div class="img-card"><h3><span class="tag">H</span> 概率热力图</h3><div class="imgwrap hud"><img id="imgProb" alt="Prob"></div><p id="capP">-</p></div>
+  </section>
+
+  <section class="panel-right">
+    <div class="err-card">
+      <h3>Error Map 误差分析</h3>
+      <div class="imgwrap hud"><img id="imgError" alt="Error"></div>
+      <div class="legend">
+        <span class="lg tp">TP 正确变化</span>
+        <span class="lg fp">FP 误报</span>
+        <span class="lg fn">FN 漏检</span>
+        <span class="lg tn">TN 正确负例</span>
+      </div>
+    </div>
+
+    <div class="region-card">
+      <h3>变化区域（点选高亮）</h3>
+      <div id="regionList" class="region-list">暂无区域</div>
+    </div>
+
+    <div class="metric-card">
+      <h3>精度指标</h3>
+      <div class="metric-grid">
+        <div><span>Precision</span><b id="mPrec">-</b></div>
+        <div><span>Recall</span><b id="mRec">-</b></div>
+        <div><span>F1</span><b id="mF1">-</b></div>
+        <div><span>IoU</span><b id="mIoU">-</b></div>
+      </div>
+      <p class="cm" id="cmText">TP / FP / FN / TN：-</p>
+    </div>
+
+    <div class="explain-card">
+      <h3>AI 解析</h3>
+      <div id="explainBox" class="explain">尚未调用 AI</div>
+    </div>
+  </section>
+</main>
+
+<footer class="navbar">
+  <button class="nav active" data-goto="detect">检测</button>
+  <button class="nav" data-goto="eval">对比</button>
+  <button class="nav" data-goto="model">模型</button>
+  <button class="nav" data-goto="eval">评估</button>
+  <button class="nav" id="btnShutdown">关机</button>
+</footer>
+
+<div id="toast" class="toast"></div>
+<div id="lightbox" class="lightbox" style="display:none">
+  <button class="lb-close" id="lbClose" title="关闭">✕</button>
+  <div class="lb-stage" id="lbStage"><img id="lbImg" alt="查看大图"></div>
+  <div class="lb-controls">
+    <button id="lbOut" title="缩小">−</button>
+    <button id="lbReset" title="复位">1:1</button>
+    <button id="lbIn" title="放大">＋</button>
+  </div>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

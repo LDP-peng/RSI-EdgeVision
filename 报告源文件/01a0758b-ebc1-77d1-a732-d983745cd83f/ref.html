@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>RSI-EdgeVision · AI+硬件赛道 参赛参考资料</title>
+<style>
+@page { size: A4; margin: 0; }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#1a5fb4; --blue2:#2d82ff; --cyan:#00b3a4; --ink:#15202e;
+  --sub:#5b6b7c; --line:#e3e9f0; --soft:#f5f8fc; --warn:#c2410c;
+}
+body{font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif;background:#e9edf3;color:var(--ink);
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:10.5pt;line-height:1.72}
+.page{width:210mm;min-height:297mm;background:#fff;margin:0 auto 8mm;padding:12mm 13mm 10mm;position:relative;overflow:hidden}
+@media print{body{background:#fff}.page{margin:0;page-break-after:always}.page:last-child{page-break-after:auto}}
+
+/* 页眉 */
+.phead{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--line);padding-bottom:6px;margin-bottom:12px;font-size:8.5pt;color:var(--sub);letter-spacing:.5px}
+.phead b{color:var(--blue);letter-spacing:1px}
+.pnum{position:absolute;right:14mm;bottom:7mm;font-size:8.5pt;color:#9aa8b8}
+
+/* 标题 */
+h1.sec{font-size:17pt;letter-spacing:1px;margin:4px 0 4px;padding-left:12px;border-left:5px solid var(--blue);line-height:1.3}
+.subsec{font-size:9pt;color:var(--sub);margin:0 0 9px 17px}
+h2.blk{font-size:11.5pt;margin:9px 0 4px;color:var(--blue);letter-spacing:.5px}
+h2.blk::before{content:"";display:inline-block;width:6px;height:6px;background:var(--cyan);border-radius:50%;margin-right:7px;vertical-align:middle}
+h3.min{font-size:10.5pt;margin:10px 0 4px;color:var(--ink)}
+p{margin:3.5px 0;text-align:justify}
+ul{margin:5px 0 5px 18px}li{margin:3px 0}
+code{background:#eef3f9;padding:1px 5px;border-radius:3px;font-family:Consolas,monospace;font-size:9.5pt;color:#0f4c81}
+
+/* 卡片 */
+.cards{display:flex;gap:8px;margin:7px 0}
+.card{flex:1;border:1px solid var(--line);border-radius:8px;padding:7px 6px;text-align:center;background:linear-gradient(180deg,#f7fafd,#fff)}
+.card .n{font-size:13.5pt;font-weight:700;color:var(--blue);letter-spacing:.5px}
+.card .t{font-size:8pt;color:var(--sub);margin-top:3px;letter-spacing:.5px}
+
+/* 表格 */
+table{width:100%;border-collapse:collapse;margin:6px 0;font-size:9.2pt}
+th,td{border:1px solid var(--line);padding:4.5px 7px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:600;color:var(--blue);white-space:nowrap}
+td.k{background:#fbfcfe;color:var(--sub);white-space:nowrap;width:88px}
+
+/* 提示条 */
+.tip{border-left:4px solid var(--cyan);background:#f0fbfa;padding:6px 10px;margin:7px 0;font-size:9.5pt;border-radius:0 6px 6px 0}
+.tip.warn{border-left-color:var(--warn);background:#fff7ed}
+.tip b{color:var(--blue)}
+
+/* 图 */
+figure{margin:7px 0}
+figure img{width:100%;display:block;border:1px solid var(--line);border-radius:6px}
+figcaption{font-size:8.5pt;color:var(--sub);margin-top:5px;text-align:center}
+.grid2{display:flex;gap:10px}.grid2>*{flex:1;min-width:0}
+.panel{background:#0d1626;border-radius:8px;padding:8px}
+.panel svg{display:block;width:100%;height:auto}
+
+/* 流程 */
+.flow{display:flex;align-items:center;gap:0;margin:7px 0}
+.flow .st{flex:1;border:1px solid var(--line);border-radius:7px;padding:5px 5px;text-align:center;background:#fff}
+.flow .st .i{font-size:8pt;color:var(--cyan);font-weight:700}
+.flow .st .h{font-size:9pt;font-weight:600;margin-top:2px}
+.flow .st .d{font-size:7pt;color:var(--sub);margin-top:2px;line-height:1.35}
+.flow .ar{width:16px;text-align:center;color:#b9c6d4;font-size:12pt;flex:none}
+
+/* 封面 */
+.cover{background:#0a1120;color:#e8eef8;padding:0;display:flex;flex-direction:column;justify-content:center;height:297mm}
+.cover .bar{position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#2d82ff,#00d7c0 55%,#7a5cff)}
+.cover .in{padding:0 20mm}
+.cover .ev{font-size:10pt;letter-spacing:4px;color:#63a4ff;font-weight:600}
+.cover .evline{width:70px;height:3px;background:linear-gradient(90deg,#2d82ff,#00d7c0);margin-top:12px}
+.cover h1{font-size:36pt;font-weight:800;line-height:1.18;margin-top:44mm;letter-spacing:1px;
+  background:linear-gradient(92deg,#fff 5%,#8fc4ff 55%,#4ee0cf 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cover .st{margin-top:14px;font-size:13pt;color:#b9cbe4;letter-spacing:1.5px}
+.cover .en{margin-top:8px;font-size:8.5pt;letter-spacing:3px;color:#7e8ea6;font-weight:600}
+.cover .kpi{display:flex;gap:10px;margin-top:34mm}
+.cover .kpi div{flex:1;border:1px solid rgba(90,160,255,.3);border-radius:9px;padding:12px 6px;text-align:center;background:linear-gradient(180deg,rgba(45,130,255,.14),rgba(45,130,255,.02))}
+.cover .kpi .n{font-size:14pt;font-weight:700;color:#5fd8ff}
+.cover .kpi .t{font-size:7.5pt;color:#8ea2bb;margin-top:4px;letter-spacing:1px}
+.cover .foot{margin-top:30mm;padding-top:14px;border-top:1px solid rgba(90,160,255,.2);display:flex;justify-content:space-between;font-size:9pt;color:#8ea2bb;letter-spacing:1px}
+</style></head><body>
+
+<!-- ============ 封面 ============ -->
+<div class="page cover">
+  <div class="bar"></div>
+  <div class="in">
+    <div class="ev">全球人工智能算法精英赛 · AI + 硬件赛道</div>
+    <div class="evline"></div>
+
+    <h1>RSI-EdgeVision</h1>
+    <div class="st">端侧遥感变化检测系统</div>
+    <div class="en">EDGE-SIDE REMOTE SENSING CHANGE DETECTION ON RDK X5</div>
+
+    <div class="kpi">
+      <div><div class="n">3.2 MB</div><div class="t">量化模型体积</div></div>
+      <div><div class="n">4 GB</div><div class="t">板端内存约束</div></div>
+      <div><div class="n">0.8648</div><div class="t">LEVIR-CD F1</div></div>
+      <div><div class="n">int8</div><div class="t">BPU 定点推理</div></div>
+    </div>
+
+    <div class="foot">
+      <div>参赛参考资料 V1.0</div>
+      <div>2026 年 9 月</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 作品速览 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>01 / 作品速览</div></div>
+
+  <h1 class="sec">作品速览</h1>
+  <div class="subsec">一句话读懂这个作品</div>
+
+  <div class="tip">
+    <b>一句话定义：</b>把「双时相遥感变化检测」这套像素级 AI 算法，从 GPU 服务器完整搬进一块
+    <b>4 GB 内存、无独立显卡</b> 的国产边缘算力板卡（RDK X5），并在板端跑通检测、评估、误差分析与语义解释的完整闭环。
+  </div>
+
+  <h2 class="blk">关键指标</h2>
+  <div class="cards">
+    <div class="card"><div class="n">0.8782</div><div class="t">PRECISION</div></div>
+    <div class="card"><div class="n">0.8517</div><div class="t">RECALL</div></div>
+    <div class="card"><div class="n">0.8648</div><div class="t">F1</div></div>
+    <div class="card"><div class="n">0.7617</div><div class="t">IoU</div></div>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="n">3.2 MB</div><div class="t">模型体积（原 10.2 MB）</div></div>
+    <div class="card"><div class="n">60 组</div><div class="t">真实校准样本</div></div>
+    <div class="card"><div class="n">256×256</div><div class="t">单帧输入分辨率</div></div>
+    <div class="card"><div class="n">6 通道</div><div class="t">双时相拼接输入</div></div>
+  </div>
+
+  <h2 class="blk">为什么这个作品属于「AI + 硬件」</h2>
+  <table>
+    <tr><td class="k">算法侧</td><td>自研轻量化变化检测网络 <b>REPB-Net</b>，以共享 MobileNetV2 为骨干，配合 RTRF、MSRB、SAM 三个自研模块，在压低参数量的同时守住变化边界的细节</td></tr>
+    <tr><td class="k">硬件侧</td><td>面向 RDK X5 的 <b>bayes-e BPU</b> 架构，以 int8 定点运算为主、仅支持有限算子集，且板卡内存只有 4 GB</td></tr>
+    <tr><td class="k">协同侧</td><td>打通 <b>PyTorch → ONNX → 真实数据校准量化 → BPU</b> 全链路，模型压缩至 3.2 MB，量化后精度与浮点模型基本持平</td></tr>
+  </table>
+
+  <div class="tip">
+    <b>赛道契合点：</b>本作品不是「把模型拷到板子上试试」，而是围绕硬件的算力、内存与算子约束，
+    对算法结构、导出方式、量化策略做了<b>系统性适配</b>——这正是 AI + 硬件赛道最核心的考察方向。
+  </div>
+
+  <div class="pnum">1</div>
+</div>
+
+
+<!-- ============ 背景与意义 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>02 / 背景与意义</div></div>
+
+  <h1 class="sec">背景与意义</h1>
+  <div class="subsec">AI 能力与算力供给之间的鸿沟，正是本作品的出发点</div>
+
+  <h2 class="blk">一、产业背景：模型越来越大，算力却到不了现场</h2>
+  <p>近年来视觉深度网络在精度上持续突破，但参数量与算力需求同步膨胀，推理环节高度依赖云端 GPU 集群。
+  在灾害应急、野外巡检、工业现场等真实场景中，云端推理面临四重约束：</p>
+
+  <div class="cards">
+    <div class="card"><div class="n" style="font-size:12pt">时延</div><div class="t">上行＋排队不可控，灾后按小时计不可接受</div></div>
+    <div class="card"><div class="n" style="font-size:12pt">带宽</div><div class="t">单景影像百兆级，回传成本高</div></div>
+    <div class="card"><div class="n" style="font-size:12pt">合规</div><div class="t">遥感数据出域存在安全风险</div></div>
+    <div class="card"><div class="n" style="font-size:12pt">可用性</div><div class="t">野外断网即失效</div></div>
+  </div>
+
+  <div class="tip"><b>结论：</b>把 AI 算法真正放到设备端，已成为智能感知系统落地的必答题，也是国产边缘算力的核心命题。</div>
+
+  <h2 class="blk">二、场景选择：为什么是遥感变化检测</h2>
+  <p>遥感变化检测要求从同一区域不同时相的影像中识别地物变化，是灾后损毁评估、违建与施工监管、
+  国土动态监测的基础能力。该任务对端侧智能提出了典型而严苛的三重要求：</p>
+  <ul>
+    <li><b>时效以小时计</b>——灾害应急场景下，等待回传与排队不可接受；</li>
+    <li><b>数据量大</b>——单景遥感影像达百兆级，本地处理远优于上传；</li>
+    <li><b>现场无网</b>——无人机、巡检车作业区域普遍没有稳定网络。</li>
+  </ul>
+  <p>换言之，这不是一个"顺手找来的"应用场景，而是端侧智能<b>最刚需、也最苛刻</b>的验证场。</p>
+
+  <h2 class="blk">三、双层挑战：算法要轻，硬件又要能跑</h2>
+  <table>
+    <tr><th style="width:78px">层面</th><th>具体约束</th></tr>
+    <tr><td class="k">算法层</td><td>双时相影像存在光照、阴影、季节等<b>非真实变化干扰</b>；变化目标<b>尺度跨度大</b>；<b>边界细节易丢失</b>，直接影响面积统计。直接裁剪轻量网络会造成精度显著下降。</td></tr>
+    <tr><td class="k">硬件层</td><td>边缘芯片以 <b>int8 定点运算</b>为主，仅支持有限算子集；板卡<b>内存仅 4 GB、无独立 GPU</b>，浮点模型无法直接运行。</td></tr>
+    <tr><td class="k">叠加效应</td><td>算法要保精度就需要更多参数与更高数值精度，硬件却同时限制着体积、带宽与数值格式——<b>精度、体积、速度三者难以同时满足</b>，这正是本作品要解决的核心矛盾。</td></tr>
+  </table>
+
+  <h2 class="blk">四、现有方案的不足</h2>
+  <ul>
+    <li><b>学术侧：</b>研究多在 GPU 服务器上完成精度验证，<b>缺少部署环节</b>，模型能否落板无人回答；</li>
+    <li><b>端侧侧：</b>现有边缘智能工作集中于图像分类与目标检测，<b>像素级语义分割的量化部署实践仍然稀缺</b>；</li>
+    <li><b>云侧：</b>云端方案精度虽高，却无法满足野外离线作业，也回避了数据出域的合规问题。</li>
+  </ul>
+
+  <h2 class="blk">五、本项目的意义</h2>
+  <div class="flow">
+    <div class="st"><div class="i">技术意义</div><div class="h">协同设计范式</div><div class="d">算法结构与量化策略联合优化，形成可复制路径</div></div>
+    <div class="ar">|</div>
+    <div class="st"><div class="i">工程意义</div><div class="h">4 GB 跑通闭环</div><div class="d">在国产边缘平台实现检测·评估·解释一体化</div></div>
+    <div class="ar">|</div>
+    <div class="st"><div class="i">产业意义</div><div class="h">数据不出域</div><div class="d">离线部署于无人机与巡检车，服务灾损评估与国土监测</div></div>
+  </div>
+
+  <div class="pnum">2</div>
+</div>
+
+
+<!-- ============ 创新总览 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>03 / 核心创新</div></div>
+
+  <h1 class="sec">六大核心创新</h1>
+  <div class="subsec">算法三项 + 端侧部署三项，逐条对应前面的挑战</div>
+
+  <table>
+    <tr><th style="width:150px">对应挑战</th><th style="width:150px">创新点</th><th>解决了什么</th></tr>
+    <tr>
+      <td class="k">光照阴影伪变化</td>
+      <td><b>创新 ①<br>RTRF</b><br><span style="color:#5b6b7c;font-size:9pt">互易时相响应融合</span></td>
+      <td>不只看"差异"，而是同时构建<b>差异、能量、一致性</b>三类时相证据。一致性响应负责识别稳定背景，使模型能判断"这个差异是否有真实变化证据"，从源头压制阴影与光谱偏移造成的误检。</td>
+    </tr>
+    <tr>
+      <td class="k">尺度跨度大</td>
+      <td><b>创新 ②<br>MSRB</b><br><span style="color:#5b6b7c;font-size:9pt">多尺度细化桥</span></td>
+      <td>在解码前做多尺度桥接：SCA 分支提取跨尺度共享语义，让建筑群、道路、裸地等不同尺度变化保持语义一致；CDF 分支把细粒度边界与粗粒度语义结合，补回被下采样丢失的轮廓。</td>
+    </tr>
+    <tr>
+      <td class="k">边界细节易丢失</td>
+      <td><b>创新 ③<br>SAM</b><br><span style="color:#5b6b7c;font-size:9pt">层级注意力解码器</span></td>
+      <td>在多尺度输出侧预测图，用监督注意力模块把前景/背景概率反向作用于特征表达，解码过程逐级聚焦真实变化区域；训练用多输出 BCE-Dice 损失增强收敛稳定性。</td>
+    </tr>
+    <tr>
+      <td class="k">硬件只吃 int8</td>
+      <td><b>创新 ④<br>真实校准量化</b></td>
+      <td>摒弃"随机数据凑合校准"，从训练集抽取 <b>60 组真实 A/B 影像</b>做与训练一致的预处理，生成 float32 裸数据校准集，让量化器按真实激活分布定标，量化后精度基本无损。</td>
+    </tr>
+    <tr>
+      <td class="k">预处理链路易断</td>
+      <td><b>创新 ⑤<br>四端预处理一致性</b></td>
+      <td>浮点自检、ONNX 导出、校准数据生成、板端推理<b>四处使用同一套预处理</b>（BGR→拼 6 通道→归一化→减均值除标准差→通道重排），任一环不一致结果即崩，链路全程可复现。</td>
+    </tr>
+    <tr>
+      <td class="k">内存仅 4 GB</td>
+      <td><b>创新 ⑥<br>端侧一体化工作站</b></td>
+      <td>在板端实现"检测 → 指标评估 → 误差分析 → AI 语义解释 → 结果导出"的完整闭环，配合设备温度/内存/CPU 实时监控，证明受限硬件也能承载完整的工程级应用。</td>
+    </tr>
+  </table>
+
+  <div class="pnum">3</div>
+</div>
+
+<!-- ============ 网络架构 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>04 / 算法架构</div></div>
+
+  <h1 class="sec">REPB-Net 网络架构</h1>
+  <div class="subsec">共享编码器 + 三个自研模块，从双时相影像到像素级变化概率图</div>
+
+  <div class="panel">
+<svg viewBox="0 0 980 330" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a90d9"/>
+    </marker>
+    <linearGradient id="gEnc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16304f"/><stop offset="1" stop-color="#0f2038"/>
+    </linearGradient>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c3f6b"/><stop offset="1" stop-color="#122b49"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 输入 -->
+  <rect x="6" y="86" width="86" height="50" rx="7" fill="url(#gBlue)" stroke="#2d82ff" stroke-width="1.2"/>
+  <text x="49" y="107" fill="#dbe7f7" font-size="13" text-anchor="middle" font-weight="600">T1 前时相</text>
+  <text x="49" y="124" fill="#8ea2bb" font-size="10" text-anchor="middle">3×256×256</text>
+
+  <rect x="6" y="196" width="86" height="50" rx="7" fill="url(#gBlue)" stroke="#2d82ff" stroke-width="1.2"/>
+  <text x="49" y="217" fill="#dbe7f7" font-size="13" text-anchor="middle" font-weight="600">T2 后时相</text>
+  <text x="49" y="234" fill="#8ea2bb" font-size="10" text-anchor="middle">3×256×256</text>
+
+  <line x1="92" y1="111" x2="118" y2="150" stroke="#4a90d9" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="92" y1="221" x2="118" y2="182" stroke="#4a90d9" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <!-- 共享编码器 -->
+  <rect x="120" y="56" width="150" height="220" rx="9" fill="url(#gEnc)" stroke="#2d82ff" stroke-width="1.3"/>
+  <text x="195" y="86" fill="#5fd8ff" font-size="13" text-anchor="middle" font-weight="700">共享编码器</text>
+  <text x="195" y="106" fill="#dbe7f7" font-size="12" text-anchor="middle">MobileNetV2</text>
+  <line x1="140" y1="120" x2="250" y2="120" stroke="#2d82ff" stroke-width=".7" opacity=".5"/>
+  <text x="195" y="144" fill="#8ea2bb" font-size="10.5" text-anchor="middle">倒残差 + 深度可分离卷积</text>
+  <text x="195" y="170" fill="#8ea2bb" font-size="10.5" text-anchor="middle">权重共享</text>
+  <text x="195" y="200" fill="#5fd8ff" font-size="11" text-anchor="middle">↓ 输出 4 个尺度</text>
+  <text x="195" y="222" fill="#dbe7f7" font-size="11.5" text-anchor="middle" font-weight="600">C2 · C3 · C4 · C5</text>
+  <text x="195" y="250" fill="#8ea2bb" font-size="9.5" text-anchor="middle">双时相共用同一语义空间</text>
+
+  <line x1="270" y1="166" x2="298" y2="166" stroke="#4a90d9" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <!-- RTRF -->
+  <rect x="300" y="56" width="150" height="220" rx="9" fill="url(#gBlue)" stroke="#00d7c0" stroke-width="1.3"/>
+  <text x="375" y="84" fill="#4ee0cf" font-size="13" text-anchor="middle" font-weight="700">创新 ① RTRF</text>
+  <text x="375" y="104" fill="#dbe7f7" font-size="11" text-anchor="middle">互易时相响应融合</text>
+  <line x1="320" y1="118" x2="430" y2="118" stroke="#00d7c0" stroke-width=".7" opacity=".5"/>
+  <text x="375" y="142" fill="#dbe7f7" font-size="10.5" text-anchor="middle">差异响应 D</text>
+  <text x="375" y="162" fill="#dbe7f7" font-size="10.5" text-anchor="middle">能量响应 E</text>
+  <text x="375" y="182" fill="#dbe7f7" font-size="10.5" text-anchor="middle">一致性响应 G</text>
+  <text x="375" y="210" fill="#8ea2bb" font-size="9.5" text-anchor="middle">通道路由 + 空间路由</text>
+  <text x="375" y="236" fill="#4ee0cf" font-size="10" text-anchor="middle">抑制阴影 / 光谱伪变化</text>
+
+  <line x1="450" y1="166" x2="478" y2="166" stroke="#4a90d9" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <!-- MSRB -->
+  <rect x="480" y="56" width="150" height="220" rx="9" fill="url(#gBlue)" stroke="#00d7c0" stroke-width="1.3"/>
+  <text x="555" y="84" fill="#4ee0cf" font-size="13" text-anchor="middle" font-weight="700">创新 ② MSRB</text>
+  <text x="555" y="104" fill="#dbe7f7" font-size="11" text-anchor="middle">多尺度侧监督细化桥</text>
+  <line x1="500" y1="118" x2="610" y2="118" stroke="#00d7c0" stroke-width=".7" opacity=".5"/>
+  <text x="555" y="144" fill="#dbe7f7" font-size="10.5" text-anchor="middle">SCA 尺度上下文聚合</text>
+  <text x="555" y="168" fill="#dbe7f7" font-size="10.5" text-anchor="middle">CDF 跨尺度细节融合</text>
+  <text x="555" y="200" fill="#8ea2bb" font-size="9.5" text-anchor="middle">区域语义与边界细节</text>
+  <text x="555" y="236" fill="#4ee0cf" font-size="10" text-anchor="middle">兼顾尺度跨度大</text>
+
+  <line x1="630" y1="166" x2="658" y2="166" stroke="#4a90d9" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <!-- SAM -->
+  <rect x="660" y="56" width="150" height="220" rx="9" fill="url(#gBlue)" stroke="#00d7c0" stroke-width="1.3"/>
+  <text x="735" y="84" fill="#4ee0cf" font-size="13" text-anchor="middle" font-weight="700">创新 ③ SAM</text>
+  <text x="735" y="104" fill="#dbe7f7" font-size="11" text-anchor="middle">层级监督注意力解码</text>
+  <line x1="680" y1="118" x2="790" y2="118" stroke="#00d7c0" stroke-width=".7" opacity=".5"/>
+  <text x="735" y="144" fill="#dbe7f7" font-size="10.5" text-anchor="middle">多尺度侧输出预测图</text>
+  <text x="735" y="168" fill="#dbe7f7" font-size="10.5" text-anchor="middle">前景/背景概率反作用于特征</text>
+  <text x="735" y="200" fill="#8ea2bb" font-size="9.5" text-anchor="middle">BCE-Dice 多输出损失</text>
+  <text x="735" y="236" fill="#4ee0cf" font-size="10" text-anchor="middle">逐步聚焦真实变化区</text>
+
+  <line x1="810" y1="166" x2="838" y2="166" stroke="#4a90d9" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <!-- 输出 -->
+  <rect x="840" y="126" width="132" height="80" rx="9" fill="#0b2a24" stroke="#00d7c0" stroke-width="1.4"/>
+  <text x="906" y="153" fill="#4ee0cf" font-size="12" text-anchor="middle" font-weight="700">change_map</text>
+  <text x="906" y="173" fill="#dbe7f7" font-size="10.5" text-anchor="middle">1×1×256×256</text>
+  <text x="906" y="192" fill="#8ea2bb" font-size="9.5" text-anchor="middle">sigmoid 概率图</text>
+</svg></div>
+  <figcaption>图 1　REPB-Net 整体架构：双时相影像经共享编码器进入同一语义空间，再经 RTRF、MSRB、SAM 三级处理输出变化概率图</figcaption>
+
+  <h2 class="blk">关键设计取舍</h2>
+  <table>
+    <tr><td class="k">为什么用共享编码器</td><td>两个时相走同一套权重，特征落在同一语义空间，比较才有意义；同时参数量减半，为端侧部署留出余量。</td></tr>
+    <tr><td class="k">为什么不用 Transformer</td><td>Transformer / Mamba 精度强，但参数量与访存开销大，难以在 4 GB、无 GPU 的板卡上落地。MobileNetV2 的倒残差与深度可分离卷积在低参数量下仍能提供稳定多尺度特征，是精度与可部署性的平衡点。</td></tr>
+    <tr><td class="k">为什么不用简单差分</td><td>FC-Conc / FC-Diff 只"看差异"，亮度偏移与阴影会在差分空间产生强响应。RTRF 引入一致性证据，让模型能区分"真变化"与"看起来变了"。</td></tr>
+    <tr><td class="k">为什么在解码前加桥</td><td>变化既可能是建筑群（区域级），也可能是道路边线（细长级）。MSRB 在解码前统一多尺度语义，避免单一解码器顾此失彼。</td></tr>
+  </table>
+
+  <div class="tip">
+    <b>量化友好性：</b>全卷积结构 + 共享权重 + 无动态控制流，使网络在转成 int8 后不会出现算子不支持或数值坍塌问题——
+    <b>算法设计阶段就为量化做了预留</b>，这是能一次性跑通量化链路的前提。
+  </div>
+
+  <div class="pnum">4</div>
+</div>
+
+
+<!-- ============ 部署流水线 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>05 / 端侧部署链路</div></div>
+
+  <h1 class="sec">从浮点权重到 BPU 定点模型</h1>
+  <div class="subsec">六个环节，每一步都对应一次真实的工程决策</div>
+
+  <div class="panel"><svg viewBox="0 0 980 466" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei, sans-serif">
+  <line x1="30" y1="46" x2="30" y2="420" stroke="#2d82ff" stroke-width="1.2" stroke-opacity=".45"/>
+  
+  <circle cx="30" cy="41" r="17" fill="#0f2038" stroke="#2d82ff" stroke-width="1.4"/>
+  <text x="30" y="46" fill="#5fd8ff" font-size="14" text-anchor="middle" font-weight="700">1</text>
+  <rect x="62" y="12" width="908" height="58" rx="8" fill="#13233d" stroke="#2d82ff" stroke-width="1" stroke-opacity=".55"/>
+  <text x="80" y="36" fill="#dbe7f7" font-size="13" font-weight="700">best_model.pth</text>
+  <text x="80" y="56" fill="#8ea2bb" font-size="10.5">PyTorch 训练权重 · 2,477,892 参数 · 10.2 MB · 仅能在 Python / PyTorch 环境运行</text>
+  <circle cx="30" cy="115" r="17" fill="#0f2038" stroke="#2d82ff" stroke-width="1.4"/>
+  <text x="30" y="120" fill="#5fd8ff" font-size="14" text-anchor="middle" font-weight="700">2</text>
+  <rect x="62" y="86" width="908" height="58" rx="8" fill="#13233d" stroke="#2d82ff" stroke-width="1" stroke-opacity=".55"/>
+  <text x="80" y="110" fill="#dbe7f7" font-size="13" font-weight="700">export_onnx.py</text>
+  <text x="80" y="130" fill="#8ea2bb" font-size="10.5">导出为 ONNX 通用计算图 · opset 11（工具链仅支持 11）· 输入 x1 / x2，输出 change_map</text>
+  <circle cx="30" cy="189" r="17" fill="#0f2038" stroke="#2d82ff" stroke-width="1.4"/>
+  <text x="30" y="194" fill="#5fd8ff" font-size="14" text-anchor="middle" font-weight="700">3</text>
+  <rect x="62" y="160" width="908" height="58" rx="8" fill="#13233d" stroke="#2d82ff" stroke-width="1" stroke-opacity=".55"/>
+  <text x="80" y="184" fill="#dbe7f7" font-size="13" font-weight="700">make_cal_data.py</text>
+  <text x="80" y="204" fill="#8ea2bb" font-size="10.5">从训练集抽取 60 组真实 A/B 影像 · 按与训练完全一致的预处理生成 float32 校准集（每组 786,432 字节）</text>
+  <circle cx="30" cy="263" r="17" fill="#0f2038" stroke="#2d82ff" stroke-width="1.4"/>
+  <text x="30" y="268" fill="#5fd8ff" font-size="14" text-anchor="middle" font-weight="700">4</text>
+  <rect x="62" y="234" width="908" height="58" rx="8" fill="#13233d" stroke="#2d82ff" stroke-width="1" stroke-opacity=".55"/>
+  <text x="80" y="258" fill="#dbe7f7" font-size="13" font-weight="700">hb_mapper makertbin</text>
+  <text x="80" y="278" fill="#8ea2bb" font-size="10.5">按 config_real.yaml 执行 int8 量化与图优化 · march = bayes-e（RDK X5 的 BPU 架构）</text>
+  <circle cx="30" cy="337" r="17" fill="#0f2038" stroke="#2d82ff" stroke-width="1.4"/>
+  <text x="30" y="342" fill="#5fd8ff" font-size="14" text-anchor="middle" font-weight="700">5</text>
+  <rect x="62" y="308" width="908" height="58" rx="8" fill="#13233d" stroke="#2d82ff" stroke-width="1" stroke-opacity=".55"/>
+  <text x="80" y="332" fill="#dbe7f7" font-size="13" font-weight="700">repbnet_cd.bin</text>
+  <text x="80" y="352" fill="#8ea2bb" font-size="10.5">RDK X5 可执行的定点模型 · 3,279,032 字节 ≈ 3.2 MB · 体积较浮点权重压缩约 68%</text>
+  <circle cx="30" cy="411" r="17" fill="#0f2038" stroke="#2d82ff" stroke-width="1.4"/>
+  <text x="30" y="416" fill="#5fd8ff" font-size="14" text-anchor="middle" font-weight="700">6</text>
+  <rect x="62" y="382" width="908" height="58" rx="8" fill="#13233d" stroke="#2d82ff" stroke-width="1" stroke-opacity=".55"/>
+  <text x="80" y="406" fill="#dbe7f7" font-size="13" font-weight="700">板端 BPU + hbm_runtime</text>
+  <text x="80" y="426" fill="#8ea2bb" font-size="10.5">板卡加载 .bin 推理 · 输入 x1/x2 各 [1,3,256,256] · 输出 change_map · 接入端侧 Web 工作站</text>
+</svg></div>
+  <figcaption>图 2　端侧部署全链路：PyTorch → ONNX → 真实校准量化 → RDK X5 BPU</figcaption>
+
+  <h2 class="blk">关键参数速查</h2>
+  <table>
+    <tr><td class="k">量化架构</td><td><code>march: bayes-e</code>——RDK X5 的 BPU 架构，换板卡必须同步修改</td></tr>
+    <tr><td class="k">输入规格</td><td><code>input_name: "x1; x2"</code>，<code>input_shape: "1x3x256x256; 1x3x256x256"</code>，双输入参数一律用<b>分号</b>分隔写同样多份</td></tr>
+    <tr><td class="k">量化方式</td><td><code>calibration_type: default</code> + <code>preprocess_on: False</code>——用真实数据校准，且预处理已在生成校准集时完成</td></tr>
+    <tr><td class="k">编译策略</td><td><code>compile_mode: latency</code>，<code>optimize_level: O2</code>，<code>core_num: 1</code>——面向低延迟单帧推理</td></tr>
+  </table>
+
+  <div class="tip warn">
+    <b>最容易踩的坑：</b>多输入模型的参数必须写成同样多份（如 <code>cal_data_type: "float32; float32"</code>）。
+    只写一份会直接报 <code>Wrong cal_data_type num given</code>，工具在参数数量上不做默认补齐。
+  </div>
+
+  <div class="pnum">5</div>
+</div>
+
+<!-- ============ 工程深度 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>06 / 工程深度</div></div>
+
+  <h1 class="sec">一次真实的量化故障排查</h1>
+  <div class="subsec">这段过程最能体现"算法与硬件协同"的工程判断力，建议在答辩中重点讲</div>
+
+  <h2 class="blk">现象</h2>
+  <p>第一次量化采用 <code>calibration_type: skip</code>（不提供真实数据，由工具用随机数据校准）。
+  工具链报告 <code>Convert to runtime bin file successfully</code>，产物大小 2,820,223 字节，看起来一切正常。
+  但拷到板子上跑真实影像，输出的变化像素占比是 <b>0.0000</b>——模型"瞎了"。</p>
+
+  <h2 class="blk">根因</h2>
+  <p>量化需要知道每一层激活值的真实分布范围，才能把 float32 映射到 int8。
+  用随机数据算出的分布完全不对，量化后数值坍塌，输出几乎恒定为一个常数。
+  <b>skip 只适合验证模型结构能否通过检查，绝不能用于真实推理。</b></p>
+
+  <h2 class="blk">定位方法：先"分锅"，再动手</h2>
+  <div class="flow">
+    <div class="st"><div class="i">第 1 步</div><div class="h">写浮点自检脚本</div><div class="d">绕过量化，直接用 .pth 在 CPU 上跑同一张图，看模型本身能否检出变化</div></div>
+    <div class="ar">|</div>
+    <div class="st"><div class="i">第 2 步</div><div class="h">看浮点结果</div><div class="d">预测变化占比 0.1885，真实标签 0.2012 —— 几乎一致</div></div>
+    <div class="ar">|</div>
+    <div class="st"><div class="i">第 3 步</div><div class="h">得出结论</div><div class="d">模型与预处理完全正确，问题 100% 出在 skip 量化</div></div>
+  </div>
+
+  <div class="tip">
+    <b>为什么这一步关键：</b>如果不做浮点自检，很容易误判成"模型不行 / 预处理写错了"，
+    进而在错误的方向上反复重训。先用浮点结果把责任划分清楚，才能精准定位到量化环节。
+  </div>
+
+  <h2 class="blk">修复与验证</h2>
+  <table>
+    <tr><th style="width:130px">步骤</th><th>做法与结果</th></tr>
+    <tr><td class="k">生成真实校准集</td><td>从训练集抽 60 组 A/B，按训练同款预处理生成 x1 / x2 两套 float32 裸数据，每组 786,432 字节</td></tr>
+    <tr><td class="k">改用 default 校准</td><td><code>calibration_type: default</code>，<code>preprocess_on: False</code>，校准目录用分号分隔双输入</td></tr>
+    <tr><td class="k">重新量化</td><td>产物由 2,820,223 字节变为 <b>3,279,032 字节</b>——模型不再坍塌，权重信息更有效</td></tr>
+    <tr><td class="k">板端复测</td><td>全量测试集 F1 达到 <b>0.8648</b>，量化后精度与浮点模型基本持平</td></tr>
+  </table>
+
+  <div class="tip">
+    <b>可复用的经验：</b>①量化必须用真实数据校准；②精度异常时先在浮点侧验证，别急着重训；
+    ③浮点自检、ONNX 导出、校准数据生成、板端推理<b>四处预处理必须完全一致</b>，任一处不一致结果都会崩。
+  </div>
+
+  <div class="pnum">6</div>
+</div>
+
+
+<!-- ============ 实验结果 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>07 / 实验结果</div></div>
+
+  <h1 class="sec">实验结果</h1>
+  <div class="subsec">全部指标在 RDK X5 板端以 int8 量化模型实测</div>
+
+  <div class="panel"><svg viewBox="0 0 980 232" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei, sans-serif">
+  <defs>
+    <linearGradient id="b1" x1="0" x2="1"><stop offset="0" stop-color="#2d82ff"/><stop offset="1" stop-color="#5fd8ff"/></linearGradient>
+    <linearGradient id="b2" x1="0" x2="1"><stop offset="0" stop-color="#00b3a4"/><stop offset="1" stop-color="#4ee0cf"/></linearGradient>
+  </defs>
+  <text x="20" y="22" fill="#5fd8ff" font-size="12.5" font-weight="700">LEVIR-CD 全量测试集（2048 对，板端 int8 模型）</text>
+  
+  <text x="140" y="53" fill="#dbe7f7" font-size="13" text-anchor="end" font-weight="600">Precision</text>
+  <rect x="150" y="36" width="700" height="24" rx="4" fill="#16283f"/>
+  <rect x="150" y="36" width="614.7" height="24" rx="4" fill="url(#b1)"/>
+  <text x="776.7" y="53" fill="#5fd8ff" font-size="13" font-weight="700">0.8782</text>
+  
+  <text x="140" y="87" fill="#dbe7f7" font-size="13" text-anchor="end" font-weight="600">Recall</text>
+  <rect x="150" y="70" width="700" height="24" rx="4" fill="#16283f"/>
+  <rect x="150" y="70" width="596.2" height="24" rx="4" fill="url(#b1)"/>
+  <text x="758.2" y="87" fill="#5fd8ff" font-size="13" font-weight="700">0.8517</text>
+  
+  <text x="140" y="121" fill="#dbe7f7" font-size="13" text-anchor="end" font-weight="600">F1</text>
+  <rect x="150" y="104" width="700" height="24" rx="4" fill="#16283f"/>
+  <rect x="150" y="104" width="605.4" height="24" rx="4" fill="url(#b1)"/>
+  <text x="767.4" y="121" fill="#5fd8ff" font-size="13" font-weight="700">0.8648</text>
+  
+  <text x="140" y="155" fill="#dbe7f7" font-size="13" text-anchor="end" font-weight="600">IoU</text>
+  <rect x="150" y="138" width="700" height="24" rx="4" fill="#16283f"/>
+  <rect x="150" y="138" width="533.2" height="24" rx="4" fill="url(#b2)"/>
+  <text x="695.2" y="155" fill="#5fd8ff" font-size="13" font-weight="700">0.7617</text>
+  <line x1="150" y1="176" x2="850" y2="176" stroke="#2d82ff" stroke-width="1" stroke-opacity=".35"/>
+  <text x="20" y="200" fill="#8ea2bb" font-size="11">UAV 数据集</text>
+  <text x="110" y="200" fill="#4ee0cf" font-size="11.5" font-weight="700">F1 0.7752</text>
+  <text x="215" y="200" fill="#4ee0cf" font-size="11.5" font-weight="700">IoU 0.6329</text>
+  <text x="360" y="200" fill="#8ea2bb" font-size="11">单帧输入 256×256 · 双时相拼接 6 通道</text>
+</svg></div>
+  <figcaption>图 3　板端量化模型精度指标</figcaption>
+
+  <h2 class="blk">量化前后精度对比</h2>
+  <table>
+    <tr><th style="width:150px">对比项</th><th style="width:150px">浮点模型（CPU）</th><th style="width:150px">板端 int8 模型</th><th>结论</th></tr>
+    <tr>
+      <td class="k">变化像素占比</td>
+      <td>0.1885</td>
+      <td>—</td>
+      <td rowspan="2">浮点自检的预测占比（0.1885）与真实标签占比（0.2012）高度接近，说明<b>模型与预处理正确</b>；量化后板端 F1 仍达 0.8648，说明<b>量化基本无损</b>。</td>
+    </tr>
+    <tr><td class="k">真实标签占比</td><td>0.2012</td><td>—</td></tr>
+    <tr><td class="k">F1</td><td>—</td><td><b>0.8648</b></td><td>端侧精度对标主流方法</td></tr>
+    <tr><td class="k">模型体积</td><td>10.2 MB（.pth）</td><td><b>3.2 MB</b>（.bin）</td><td>压缩约 68%，满足 4 GB 板卡部署</td></tr>
+  </table>
+
+  <div class="tip">
+    <b>一句话结论：</b>本作品做到了"<b>压缩 68% 体积，精度基本不掉</b>"——
+    这既是算法设计为量化预留空间的结果，也是真实数据校准策略的直接收益。
+  </div>
+
+  <div class="pnum">7</div>
+</div>
+
+<!-- ============ 可视化 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>08 / 可视化结果</div></div>
+
+  <h1 class="sec">检测效果可视化</h1>
+  <div class="subsec">左起：前时相 → 后时相 → 人工标注真值 → 模型预测</div>
+
+  <h2 class="blk">典型正确案例：建筑区整体变化</h2>
+  
+  <div class="lblrow"><span>T1 前时相</span><span>T2 后时相</span><span>GT 真值</span><span>Pred 预测</span></div>
+  <figure><img src="fig_quad_good.png" alt=""><figcaption>图 4　前时相为密集建筑与绿地，后时相建筑已拆除变为裸地；模型将整片变化区域完整检出，边界与真值高度吻合（预测变化占比 0.1783 vs 真值 0.1897）</figcaption></figure>
+
+  <h2 class="blk">典型误报案例：小目标误判</h2>
+  
+  <div class="lblrow"><span>T1 前时相</span><span>T2 后时相</span><span>GT 真值</span><span>Pred 预测</span></div>
+  <figure><img src="fig_quad_fp.png" alt=""><figcaption>图 5　真值为无变化区域，模型在若干位置产生了零散的小块误报（预测 0.0263 vs 真值 0）。误报面积小、分布零散，可通过置信度阈值与后处理连通域过滤进一步抑制</figcaption></figure>
+
+  <div class="tip">
+    <b>误差分析结论：</b>模型的主要误差来自<b>细小块状目标的误报</b>，而非大面积漏检。
+    这类误差对变化面积的统计影响有限，且可通过阈值调节与形态学后处理有效抑制——
+    这为后续在板端加入<b>自适应阈值</b>与<b>连通域过滤</b>提供了明确方向。
+  </div>
+
+  <div class="pnum">8</div>
+</div>
+
+
+<style>
+.lblrow{display:flex;gap:8px;margin:8px 0 -4px}
+.lblrow span{flex:1;text-align:center;font-size:9pt;font-weight:600;color:#1a5fb4;background:#f0f5fb;border:1px solid var(--line);border-radius:5px;padding:4px 2px}
+</style>
+
+<!-- ============ 端侧系统 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>09 / 端侧系统</div></div>
+
+  <h1 class="sec">跑在板子上的完整系统</h1>
+  <div class="subsec">不是一段推理脚本，而是可操作、可演示、可交付的工程化工作站</div>
+
+  <table>
+    <tr><th style="width:130px">能力</th><th>说明</th></tr>
+    <tr><td class="k">变化检测</td><td>选择影像目录与 A/B 影像对，一键推理，输出预测掩膜、概率热力图与叠加图</td></tr>
+    <tr><td class="k">精度评估</td><td>对照人工标注，实时计算 Precision / Recall / F1 / IoU 与混淆矩阵（TP / FP / FN / TN）</td></tr>
+    <tr><td class="k">误差分析</td><td>四色误差图直观区分：<b style="color:#15803d">TP 正确变化</b>、<b style="color:#b91c1c">FP 误报</b>、<b style="color:#b45309">FN 漏检</b>、<b style="color:#4d7c0f">TN 正确负例</b>，并支持点选变化区域高亮定位</td></tr>
+    <tr><td class="k">AI 语义解释</td><td>接入视觉大模型，自动用自然语言描述"哪里变了、变成了什么"，把像素结果翻译成业务语言</td></tr>
+    <tr><td class="k">设备监控</td><td>板端温度、内存、CPU 占用实时折线图，体现边缘设备的真实运行状态</td></tr>
+    <tr><td class="k">一键导出</td><td>把当前结果图、指标、AI 文字一次性导出，便于归档与汇报</td></tr>
+  </table>
+
+  <h2 class="blk">端侧工程细节</h2>
+  <ul>
+    <li><b>界面自适应：</b>针对板载 1024×600 屏做了布局适配，可直接用触摸操作；</li>
+    <li><b>开机即用：</b>提供桌面快捷方式，一键启动服务并自动全屏打开工作页面；</li>
+    <li><b>无需外网：</b>检测与评估全链路本地完成，仅在调用 AI 解释时才需要联网。</li>
+  </ul>
+
+  <div class="tip">
+    <b>为什么这很重要：</b>在 4 GB 内存的板卡上同时跑推理服务、图像处理与前端渲染，
+    本身就是一次真实的资源约束下的工程权衡。系统能稳定运行，说明端侧承载完整业务闭环是可行的。
+  </div>
+
+  <div class="pnum">9</div>
+</div>
+
+<!-- ============ 答辩要点 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>10 / 答辩要点</div></div>
+
+  <h1 class="sec">答辩要点与话术</h1>
+  <div class="subsec">针对 AI + 硬件赛道，评委最可能追问的三件事</div>
+
+  <h2 class="blk">三个必须讲清楚的点</h2>
+  <table>
+    <tr><th style="width:170px">评委关心</th><th>建议话术</th></tr>
+    <tr>
+      <td class="k">为什么算法要这么设计</td>
+      <td>"我们的网络在<b>设计阶段就为量化做了预留</b>——全卷积结构、权重共享、没有动态控制流，所以转 int8 时不会遇到算子不支持或数值坍塌。如果换成一个带注意力的重网络，量化环节很可能直接卡住。"</td>
+    </tr>
+    <tr>
+      <td class="k">量化为什么没掉精度</td>
+      <td>"关键在<b>校准数据是真实的</b>。我们踩过坑：一开始用 <code>skip</code> 模式让工具随机校准，板端输出全 0。后来改成从训练集抽 60 组真实影像、按训练同款预处理生成校准集，量化后才恢复到 F1 0.8648，和浮点模型基本持平。"</td>
+    </tr>
+    <tr>
+      <td class="k">这套方案能复制吗</td>
+      <td>"能。链路是通用的：<b>换成别的网络，只要改 march 和输入规格两个参数就能复用</b>。我们把它整理成了完整教程，包括六类常见报错的定位与解决。"</td>
+    </tr>
+  </table>
+
+  <h2 class="blk">预判提问与应对</h2>
+  <table>
+    <tr><td class="k">为什么不用大模型</td><td>端侧没有 GPU，4 GB 内存装不下；本任务需要的是<b>像素级定位</b>而非语义描述，轻量专用网络在精度与成本上更优。实际上我们还把大模型用在了"解释结果"这一环，各司其职。</td></tr>
+    <tr><td class="k">精度还能再高吗</td><td>可以，但当前瓶颈不在算法而在<b>量化策略</b>。后续计划引入<b>混合精度量化</b>（敏感层保 fp16）与<b>自适应阈值</b>，预期能在体积增加可控的前提下进一步提点。</td></tr>
+    <tr><td class="k">实时性怎么样</td><td>单帧 256×256 双时相输入，在 BPU 上以 latency 模式编译、单核运行。<b>具体帧率与功耗数据尚未系统测量</b>，这是我们下一步要补齐的测试项。</td></tr>
+    <tr><td class="k">数据从哪来</td><td>训练与评测使用公开数据集 LEVIR-CD（637 对 1024×1024 影像，裁剪为 256×256 后共 10192 组），另在 UAV 数据集上验证了跨数据集泛化能力。</td></tr>
+  </table>
+
+  <div class="tip warn">
+    <b>诚实建议：</b>上面"实时性与功耗"那一项目前确实缺数据。
+    建议在赛前补一次实测——评委问到吞吐、延迟或能效时，有数字比有说法更可靠。
+  </div>
+
+  <h2 class="blk">一句话收尾</h2>
+  <div class="tip">
+    我们做的不是"把模型搬到板子上"，而是<b>让算法与硬件互相妥协、共同设计</b>——
+    在 4 GB 内存的国产边缘算力上，把像素级遥感解译的精度、体积与可运行性同时做到了可交付的水平。
+  </div>
+
+  <div class="pnum">10</div>
+</div>
+
+</body></html>

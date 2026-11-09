@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>RSI-EdgeVision 商业计划书</title>
+<style>
+@page{size:A4;margin:13mm 14mm 12mm;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:"Microsoft YaHei","SimHei",sans-serif;font-size:9.8pt;line-height:1.7;color:#15202B;}
+.page{page-break-after:always;}
+.page:last-child{page-break-after:auto;}
+h1.sec{font-size:15pt;color:#1F5C99;border-left:7px solid #1F5C99;padding-left:11px;margin:0 0 4px;}
+h1.sec small{display:block;font-size:8.5pt;color:#7B8794;font-weight:normal;letter-spacing:.5px;margin-top:2px;}
+h2{font-size:10.5pt;color:#12325B;margin:13px 0 5px;}
+h3{font-size:9.8pt;color:#22303D;margin:10px 0 4px;}
+p{margin:0 0 7px;text-align:justify;}
+ul{margin:4px 0 7px;padding-left:17px;}
+li{margin:0 0 3px;}
+b,strong{color:#12325B;}
+.hl{color:#1F5C99;font-weight:bold;}
+.card{background:#F4F7FB;border:1px solid #DFE6EE;border-left:4px solid #1F5C99;border-radius:5px;padding:9px 12px;margin:9px 0;}
+.card.plain{border-left:1px solid #DFE6EE;}
+table{width:100%;border-collapse:collapse;font-size:8.5pt;margin:6px 0;}
+th{background:#1F5C99;color:#fff;padding:5px 6px;border:1px solid #C6CBD1;text-align:center;font-weight:bold;}
+td{border:1px solid #C6CBD1;padding:5px 6px;vertical-align:top;}
+tbody tr:nth-child(even) td{background:#F6F9FC;}
+td.c,th.c{text-align:center;}
+.note{font-size:8.2pt;color:#7B8794;margin:3px 0 8px;}
+.src{font-size:8pt;color:#7B8794;}
+.cap{font-size:8.4pt;color:#4C5866;text-align:center;margin:3px 0 10px;}
+.grid2{display:flex;gap:10px;}.grid2>div{flex:1;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
+.kpi{display:flex;gap:7px;margin:8px 0;}
+.kpi .k{flex:1;background:#F4F7FB;border:1px solid #DFE6EE;border-top:3px solid #1F5C99;border-radius:4px;padding:7px 6px;text-align:center;}
+.kpi .k .v{font-size:14pt;color:#1F5C99;font-weight:bold;line-height:1.25;}
+.kpi .k .t{font-size:8pt;color:#4C5866;}
+.bar{display:flex;align-items:center;gap:7px;margin:4px 0;font-size:8.6pt;}
+.bar .lab{width:118px;color:#4C5866;text-align:right;}
+.bar .trk{flex:1;background:#E9EFF6;border-radius:3px;height:13px;overflow:hidden;}
+.bar .val{height:100%;background:#1F5C99;border-radius:3px;}
+.bar .val.g{background:#17795E;}
+.bar .num{width:78px;color:#12325B;font-weight:bold;}
+.funnel{margin:9px 0;}
+.funnel .f{margin:0 auto 5px;border-radius:4px;padding:5px 10px;color:#fff;display:flex;justify-content:space-between;align-items:center;font-size:9pt;}
+.funnel .f b,.funnel .f span{color:#FFFFFF;font-weight:bold;}
+.funnel .f1{width:100%;background:#12325B;}
+.funnel .f2{width:78%;background:#1F5C99;}
+.funnel .f3{width:54%;background:#6B93BB;}
+.canvas{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
+.canvas .c{border:1px solid #C6CBD1;border-radius:4px;padding:6px 7px;background:#fff;font-size:8.2pt;line-height:1.55;}
+.canvas .c h4{margin:0 0 3px;font-size:8.6pt;color:#1F5C99;border-bottom:1px solid #E9EFF6;padding-bottom:2px;}
+.cover{height:250mm;display:flex;flex-direction:column;justify-content:center;}
+.cover .bar{height:7px;background:#1F5C99;width:100%;margin:0 0 26px;}
+.cover .t1{font-size:9.5pt;color:#7B8794;letter-spacing:1px;margin-bottom:10px;}
+.cover h1{font-size:33pt;color:#1F5C99;margin:0 0 4px;letter-spacing:1px;}
+.cover .t2{font-size:13pt;color:#22303D;margin:0 0 20px;}
+.cover .t3{font-size:11pt;color:#4C5866;line-height:1.9;border-left:4px solid #C6CBD1;padding-left:12px;margin-bottom:34px;}
+.cover .meta{font-size:9.5pt;color:#4C5866;line-height:2;}
+.chart{display:flex;align-items:flex-end;gap:16px;height:112px;border-bottom:2px solid #C6CBD1;padding:0 6px;margin:10px 0 0;}
+.chart .b{flex:1 1 0;min-width:0;display:flex;align-items:flex-end;gap:4px;height:100%;}
+
+.chart i{flex:1 1 0;min-width:0;border-radius:2px 2px 0 0;display:block;}
+.chart i.rev{background:#1F5C99;}
+.chart i.cost{background:#BFCBD8;}
+.chart i.prf{background:#17795E;}
+.chart .x{font-size:8.4pt;color:#4C5866;text-align:center;margin:3px 0 0;}
+.legend{display:flex;gap:14px;font-size:8.2pt;color:#4C5866;margin:5px 0 0;justify-content:center;}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px;}
+.road{display:flex;gap:6px;}
+.road .r{flex:1;border-top:3px solid #1F5C99;padding-top:6px;font-size:8.2pt;color:#4C5866;}
+.road .r b{display:block;color:#1F5C99;font-size:8.6pt;margin-bottom:2px;}
+.org{display:flex;gap:7px;text-align:center;}
+.org>div{flex:1;border:1px solid #C6CBD1;border-top:3px solid #1F5C99;border-radius:4px;padding:7px 5px;font-size:8.2pt;}
+.org>div .r{font-size:9pt;color:#1F5C99;font-weight:bold;display:block;margin-bottom:2px;}
+.rmark{font-size:8.4pt;background:#F2F7FC;border:1px dashed #6B93BB;border-radius:4px;padding:4px 7px;color:#12325B;margin:6px 0;}
+.tag{display:inline-block;background:#F4F7FB;border:1px solid #DFE6EE;border-radius:3px;padding:0 6px;font-size:8pt;color:#12325B;margin-right:4px;}
+.figbox{margin:8px 0 2px;text-align:center;}
+.figbox img{display:inline-block;max-width:100%;border:1px solid #C6CBD1;border-radius:5px;}
+</style></head><body>
+
+<!-- ================= COVER ================= -->
+<div class="page cover">
+  <div class="bar"></div>
+  <div class="t1">AIC 全球校园人工智能算法精英大赛 · 算法创新赛 · AI + 新工科赛道 · 商业计划书</div>
+  <h1>RSI-EdgeVision</h1>
+  <div class="t2">面向无网野外的遥感变化检测端侧工作站</div>
+  <div class="t3">让县级监测单位在没有网络、没有外电的野外，<br>当场拿到可核验的变化图斑与面积。</div>
+  <div class="meta">
+    团　　队：【待填：团队名称】<br>
+    团队成员：【待填：姓名 / 专业 / 分工】<br>
+    指导老师：【待填：姓名 / 职称 / 单位】<br>
+    所在院校：【待填：学校 / 学院】<br>
+    日　　期：2026 年 10 月
+  </div>
+</div>
+<!-- ================= 1 EXEC SUMMARY ================= -->
+<div class="page">
+<h1 class="sec">一、执行摘要<small>EXECUTIVE SUMMARY</small></h1>
+<p>RSI-EdgeVision 是一台面向基层监测单位的<b>端侧遥感变化检测工作站</b>。它在国产边缘板卡 RDK X5 上以 int8 定点模型完成双时相影像的变化检测，整机 12 V 锂电供电、无风扇被动散热，在无外电、无网络的野外现场即可输出变化图斑、面积统计与误差四色图，数据不出域。</p>
+<p>技术侧，我们自研轻量化变化检测网络 <b>RTMA-Net</b>，以权重共享的 MobileNetV2 编码器把双时相影像映射到同一语义空间，再经 TFRM、MSFM、SAttM 三个模块分别针对<b>伪变化干扰、尺度跨度、细长边界</b>三类难点定向补偿，参数量仅 247 万。经 60 组真实数据校准 int8 量化后，模型体积由 10.2 MB 压缩到 3.2 MB（<span class="hl">−68%</span>）。在 LEVIR-CD 全量测试集（2 048 对）上取得 Precision 0.8782、Recall 0.8517、F1 0.8648、IoU 0.7617，端到端单帧 <span class="hl">40.91 ms</span>。</p>
+<p>市场侧，据《中国卫星遥感及应用产业发展蓝皮书（2024 年）》，"十四五"期间我国卫星遥感及应用产业累计产值突破 1 万亿元；艾瑞咨询指出，2025 年我国商业遥感数据与服务市场规模约 18 亿美元，下游应用市场整体规模已突破 <b>2 100 亿元</b>。其中"必须到现场、且现场没有网"的执法核查与应急救援场景，构成我们的可服务市场。</p>
+<p>商业模式上，以<b>整机销售 + 软件年费 + 定制模型服务</b>三档收入切入：第一年签约 6 台整机与 3 家软件用户，收入 26.4 万元；第三年收入约 382 万元，<b>第 19 个月实现盈亏平衡</b>。首轮拟融资 150 万元，用于算法迭代、样机试制与省内渠道建设。</p>
+<div class="card"><b>一句话商业模式：</b>把原本要回传云端、按周计的变化检测，做成一台可以拎到现场的箱子——县级单位买整机、按年付软件费，我们在现场把"发现变化"这一步自动化。</div>
+
+</div>
+
+<!-- ================= 2 PAIN & MARKET ================= -->
+<div class="page">
+<h1 class="sec">二、痛点与市场<small>PROBLEM &amp; MARKET</small></h1>
+
+<h2>2.1 痛点：谁、在什么场景、多痛、愿意付多少钱</h2>
+<table>
+<tr><th style="width:16%">维度</th><th>具体内容</th></tr>
+<tr><td><b>谁</b></td><td>县级自然资源局执法监察、应急管理局地质灾害防治、林草与生态环境监测站，及承接巡检任务的无人机服务公司。</td></tr>
+<tr><td><b>什么场景</b></td><td>违建核查、土地违规使用、灾后损毁评估、植被与岸线变化——作业地点在野外、山区、灾后现场，<b>没有网络，也常常没有外电</b>。</td></tr>
+<tr><td><b>多痛</b></td><td>① 影像回传云端排队，救援决策等不起；② 数据出域有合规顾虑；③ 人工逐幅比对易漏；④ 外委解译周期长、费用高。</td></tr>
+<tr><td><b>愿意付多少</b></td><td>以一个县级单位年均 5 000 个图斑估算，人工逐幅比对约需 25 人·天。本方案把"发现变化"自动化、人工只做确认，<b>核查工作量可压缩约 80%</b>。若按外委解译 200 元/图斑测算，单县每年可减少外委支出约 80 万元；对应本方案整机 + 软件年费合计约 5 万元，<b>投入产出比约 1 : 16</b>。</td></tr>
+</table>
+
+
+<h2>2.2 客户画像：第一个要拿下的人是谁</h2>
+<div class="grid3">
+  <div class="card plain"><b>行业与规模</b><br>县级自然资源／应急／林草单位；编制 20~60 人，年监测经费 50~300 万元。</div>
+  <div class="card plain"><b>决策链</b><br>使用者＝执法监察大队长 / 监测科长；签批人＝分管副局长；采购动因＝上级考核"变化图斑核查率"。</div>
+  <div class="card plain"><b>为什么现在买</b><br>预算年度化、考核硬指标化，且现有手段在"无网现场"这一环存在明确缺口。</div>
+</div>
+
+<h2>2.3 市场规模：TAM / SAM / SOM 三层测算</h2>
+<div class="funnel">
+  <div class="f f1"><b>TAM 全国遥感应用下游市场</b><span>≈ 2 100 亿元</span></div>
+  <div class="f f2"><b>SAM 其中需现场/离线解译的基层监测与巡检场景</b><span>≈ 168 亿元（全国）・约 17 亿元（广东）</span></div>
+  <div class="f f3"><b>SOM 未来 3 年可签约业务</b><span>≈ 530 万元・占广东 SAM 约 0.31%</span></div>
+</div>
+<div class="cap">图 1　TAM / SAM / SOM 三层市场规模测算</div>
+<table>
+<tr><th style="width:12%">层级</th><th style="width:26%">数值</th><th>测算逻辑与数据来源</th></tr>
+<tr><td class="c"><b>TAM</b></td><td class="c">2 100 亿元</td><td>艾瑞咨询《2025—2026 年中国商业遥感卫星行业研究报告》：下游应用市场整体规模已突破 2 100 亿元（同期数据与服务市场约 18 亿美元）。</td></tr>
+<tr><td class="c"><b>SAM</b></td><td class="c">168 亿元<br><span class="src">（广东约 17 亿元）</span></td><td>测算：筛选必须到现场且现场无网的场景（基层国土执法、应急地质灾害、林草与环保监测、无人机巡检），保守按 <b>8%</b> 估算得 168 亿元；广东按 1/10 计约 17 亿元。</td></tr>
+<tr><td class="c"><b>SOM</b></td><td class="c">530 万元<br><span class="src">（3 年累计）</span></td><td><b>测算：</b>依托广东省内高校、导师与无人机服务商渠道，3 年内实际可签约 <b>约 80 台整机 + 50 家软件用户</b>，累计收入约 530 万元，占广东 SAM 约 <b>0.31%</b>。</td></tr>
+</table>
+<p class="note">数据来源：艾瑞咨询《2025—2026 年中国商业遥感卫星行业研究报告》、《中国卫星遥感及应用产业发展蓝皮书（2024 年）》。8% 与 1/10 为测算假设，SOM 口径见第八章。</p>
+<div class="card"><b>为什么值得做：</b>它不是遥感市场里最大的那块，却是云端方案结构性覆盖不到的那块。</div>
+</div>
+<!-- ================= 3 PRODUCT & TECH ================= -->
+<div class="page">
+<h1 class="sec">三、产品与技术<small>PRODUCT &amp; TECHNOLOGY</small></h1>
+
+<h2>3.1 核心功能：用用户听得懂的话说</h2>
+<p>插上 SD 卡 → 选前后两期影像 → 点「开始检测」 → 屏幕同屏给出<b>六视图联动</b>（前时相、后时相、真值、预测掩膜、叠加图、概率热力图）；一张<b>误差四色图</b>直接标出哪里报错了（TP 正确变化 / FP 误报 / FN 漏检 / TN 正确负例）；指标卡实时给出 Precision / Recall / F1 / IoU 与四类像素计数，阈值可拖动调节；点「AI 解释」用中文说出"哪里变了、变成了什么"；点「导出」打包结果图、指标与文字。全程离线，无一行命令。</p></p>
+
+<h2>3.2 技术壁垒：算法 × 边缘工程的双重门槛</h2>
+<div class="grid3">
+  <div class="card plain"><b>算法壁垒</b><br>RTMA-Net 三个模块各对一类难点：TFRM 用差异／能量／一致性三种响应区分真伪变化，MSFM 兼顾尺度跨度，SAttM 守住道路、田埂等细长边界；参数量仅 247 万。</div>
+  <div class="card plain"><b>工程壁垒（新工科结合点）</b><br>我们不把算法和硬件当两件事：结构设计与训练阶段就把目标芯片的算子集与 int8 格式作为约束，配合自研 12 V 降压模块与铝箱被动散热。这种一体化能力，纯算法团队难以复制。</div>
+  <div class="card plain"><b>数据壁垒</b><br>持续累积本地化样本（广东沿海、红树林、低丘台地）形成区域校准集，样本越用越准。</div>
+</div>
+
+<h2>3.3 关键指标：把性能翻译成钱</h2>
+<div class="kpi">
+  <div class="k"><div class="v">0.8648</div><div class="t">F1（LEVIR-CD 全量 2 048 对）</div></div>
+  <div class="k"><div class="v">40.91<span style="font-size:9pt"> ms</span></div><div class="t">端到端单帧耗时</div></div>
+  <div class="k"><div class="v">3.2<span style="font-size:9pt"> MB</span></div><div class="t">定点模型体积（−68%）</div></div>
+  <div class="k"><div class="v">≈80%</div><div class="t">客户核查工作量压缩</div></div>
+</div>
+<div class="bar"><div class="lab">预处理（CPU）</div><div class="trk"><div class="val" style="width:66%"></div></div><div class="num">27.15 ms</div></div>
+<div class="bar"><div class="lab">BPU 推理</div><div class="trk"><div class="val g" style="width:21%"></div></div><div class="num">8.65 ms</div></div>
+<div class="bar"><div class="lab">后处理</div><div class="trk"><div class="val g" style="width:12%"></div></div><div class="num">5.11 ms</div></div>
+<div class="cap">图 2　端到端 40.91 ms 耗时分解：瓶颈在 CPU 侧预处理，而非 BPU</div>
+<p><b>商业价值换算：</b>核查工作量压缩约 80%（依据见 2.1），单县每年减少外委解译支出约 80 万元；误报 12.2% 与漏检 14.8% 接近，说明它没有明显偏斜，客户拿到的图斑清单不会出现大量无效复核。</p>
+
+
+<h2>3.4 产品路线图</h2>
+<div class="road">
+  <div class="r"><b>已完成 · 2026 Q4</b>算法 + 量化链路 + 板端工作站原型；LEVIR-CD 全量评测；300 s 稳定性测试。</div>
+  <div class="r"><b>2027 Q1</b>预处理下沉优化，端到端目标 ≤ 25 ms；发布 v1.0 整机（含箱体、供电、屏幕）。</div>
+  <div class="r"><b>2027 Q2</b>接入广东省内 1~2 个县级试点，采集本地样本并微调，形成区域版模型。</div>
+  <div class="r"><b>2027 Q4</b>支持无人机影像自动拼接与批量巡检模式，交付"无人机 + 端侧工作站"整套方案。</div>
+</div>
+</div>
+
+<!-- ================= 3.5 PRODUCT SCREENSHOTS ================= -->
+<div class="page">
+<h1 class="sec">三、产品与技术（续）<small>PRODUCT IN REALITY</small></h1>
+<h2>3.5 产品实景：客户实际看到的两块屏</h2>
+<p>下面两张是端侧工作站在 RDK X5 上的真实抓屏，第一张是监测人员每天面对的检测主界面：</p>
+<div class="figbox"><img style="width:96mm" src="img/ui_main.jpg" alt="端侧工作站检测主界面（六视图联动）">
+<div class="cap">图 3　检测主界面：左侧 A/B 拖动对比与四视图，右侧误差四色图（TP／FP／FN／TN）、区域点选列表、精度指标与 AI 中文解释同屏</div></div>
+<p class="note">注：图 3 为单幅演示影像结果，与 3.3 节全量测试集口径不同。</p>
+<div class="figbox"><img style="width:150mm" src="img/ui_board.jpg" alt="板端运行状态与硬件自检界面">
+<div class="cap">图 4　板端运行状态页：int8 定点模型由 hbm_runtime 载入 BPU 执行；右上角为数据目录、影像对与阈值滑块，下方为温度／负载曲线</div></div>
+<p>从「板子里跑着一个模型」到「监测人员会用的产品」，中间还有界面、阈值调节、区域点选与导出——这部分常被低估，却决定产品能否卖给非技术客户。</p>
+</div>
+
+<!-- ================= 4 COMPETITION ================= -->
+<div class="page">
+<h1 class="sec">四、竞争分析<small>COMPETITION</small></h1>
+<p>变化检测不是无人区。市面方案可分四类，逐项对比后可以说清楚：我们不争「精度最高」，我们争<b>唯一能在无网野外当场跑起来</b>。</p>
+<table>
+<tr><th style="width:15%">方案类型</th><th style="width:9%">典型代表</th><th class="c" style="width:7%">精度</th><th class="c" style="width:7%">离线</th><th class="c" style="width:7%">现场</th><th class="c" style="width:8%">功耗</th><th class="c" style="width:9%">门槛</th><th>主要短板</th></tr>
+<tr><td>云端遥感解译平台</td><td>云服务</td><td class="c">高</td><td class="c"><b>否</b></td><td class="c"><b>否</b></td><td class="c">—</td><td class="c">低</td><td>依赖回传与网络；数据出域有合规顾虑；排队时延以小时至天计</td></tr>
+<tr><td>传统桌面遥感软件</td><td>商业软件</td><td class="c">中</td><td class="c">是</td><td class="c">部分</td><td class="c">高</td><td class="c">高</td><td>需专业人员操作、授权费高；算法偏传统，复杂场景漏误报明显</td></tr>
+<tr><td>通用边缘 AI 盒子</td><td>开发板方案</td><td class="c">取决于模型</td><td class="c">是</td><td class="c">是</td><td class="c">中</td><td class="c">很高</td><td>只是「裸板 + 算力」，模型、量化、供电与结构需自理，不成产品</td></tr>
+<tr><td>人工目视 / 外委解译</td><td>—</td><td class="c">高</td><td class="c">是</td><td class="c"><b>否</b></td><td class="c">—</td><td class="c">低</td><td>周期长、单价高（约 100~400 元/图斑），结果不可复现</td></tr>
+<tr style="background:#E9F1F9"><td><b>本方案</b></td><td><b>—</b></td><td class="c"><b>F1 0.8648</b></td><td class="c"><b>是</b></td><td class="c"><b>是</b></td><td class="c"><b>低</b></td><td class="c"><b>低（开箱即用）</b></td><td>生态与样本量不及大厂；跨区域泛化仍需持续补样本</td></tr>
+</table>
+<div class="cap">表 1　四类现有方案与本方案对比</div>
+<div class="card"><b>差异化定位：</b>三类方案各有强项，但都不解决「无网野外当场出结果」。我们的取舍很明确——<b>牺牲峰值精度，换取「拎到现场就能出结果」的确定性</b>。护城河是「算法 + 算子 + 供电 + 结构」的整机化能力与本地化样本。</div>
+
+</div>
+<!-- ================= 5 BUSINESS MODEL CANVAS ================= -->
+<div class="page">
+<h1 class="sec">五、商业模式画布<small>BUSINESS MODEL CANVAS</small></h1>
+<p>九格全部落到具体条件上：<b>第一年收谁的钱、收多少、怎么收</b>，都在格子里写清楚。</p>
+<div class="canvas">
+  <div class="c"><h4>① 关键合作伙伴</h4>院校实验室与导师课题组（算法与场地）；无人机巡检服务商（集成渠道）；国产板卡厂商生态；本地测绘与规划咨询单位（分包交付）。</div>
+  <div class="c"><h4>② 关键业务</h4>算法迭代与定点量化；整机集成与出厂测试；现场部署与使用培训；本地样本采集与区域模型微调。</div>
+  <div class="c"><h4>③ 价值主张</h4>让年预算几十万元的县级监测单位，<b>用不到 1/16 的投入</b>，在无网无外电的野外当场拿到可核验的变化图斑与面积；数据不出域，结果不过夜。</div>
+  <div class="c"><h4>④ 关键资源</h4>RTMA-Net 算法与 3.2 MB 定点模型；自研导出—校准—量化工具链；本地化样本库；自研 12 V 降压模块与被动散热结构。</div>
+  <div class="c"><h4>⑤ 渠道通路</h4>高校产学研合作与竞赛曝光（首批信任来源）；无人机服务商集成分销；行业展会与现场演示；老客户转介绍。</div>
+  <div class="c"><h4>⑥ 客户关系</h4>试点期驻场陪跑与培训；交付后按年提供模型更新与远程支持；以样板客户带动同系统内复制。</div>
+  <div class="c"><h4>⑦ 成本结构</h4>整机 BOM（约 0.9 万元/台）；算力与云服务；人力与劳务；差旅与营销；认证与测试。</div>
+  <div class="c"><h4>⑧ 收入来源</h4><b>整机销售</b>（3.8 万元/台起）；<b>软件年费</b>（1.2 万元/年起，含模型更新）；<b>定制模型与数据服务</b>（3~8 万元/项）。</div>
+  <div class="c"><h4>⑨ 客户细分</h4>县级自然资源执法监察；县市级应急与地质灾害防治；林草与生态环境监测站；承接政府巡检的无人机服务公司。</div>
+</div>
+
+<div class="cap">图 5　商业模式画布（九格）</div>
+<h2>5.1 单元经济：一台机器赚多少钱</h2>
+<table>
+<tr><th style="width:18%">科目</th><th class="c" style="width:13%">Y1</th><th class="c" style="width:13%">Y3</th><th>说明</th></tr>
+<tr><td>单台售价</td><td class="c">3.8 万</td><td class="c">3.4 万</td><td>含出厂调试与一次现场部署。</td></tr>
+<tr><td>单台 BOM</td><td class="c">0.9 万</td><td class="c">0.82 万</td><td>板卡、屏、电池、降压模块与铝箱。</td></tr>
+<tr><td>单台毛利</td><td class="c">2.9 万</td><td class="c">2.58 万</td><td>毛利率约 76%，不含人力与研发分摊。</td></tr>
+<tr><td>客户 3 年价值</td><td class="c">≈8.1 万</td><td class="c">≈8.1 万</td><td>1 台整机 + 3 年年费；按 80% 续费率约 7.2 万。</td></tr>
+</table>
+<div class="cap">表 2　单台与单客户单元经济测算（BOM 为假设值，见第八章）</div>
+<p>定价逻辑：硬件按小批量成本加成、随走量让利；软件按年订阅、边际成本近零——<b>真正的利润从第二年开始</b>。</p>
+</div>
+
+<!-- ================= 6 OPERATIONS & TRACTION ================= -->
+<div class="page">
+<h1 class="sec">六、运营与落地进展<small>OPERATIONS &amp; TRACTION</small></h1>
+<p>按可信度从高到低排列：<b>已经跑通的、正在做的、还需资源才能启动的</b>。</p>
+<table>
+<tr><th style="width:13%">阶段</th><th style="width:24%">事项</th><th>当前状态与可验证证据</th></tr>
+<tr><td class="c"><b>已完成</b></td><td>端侧工作站原型</td><td>板端跑通全流程：双时相导入 → 六视图联动 → 误差四色图 → 指标卡 → 区域点选 → AI 解释 → 导出。</td></tr>
+<tr><td class="c"><b>已完成</b></td><td>定点模型与量化链路</td><td>权重由 10.2 MB 压至 <b>3.2 MB</b>（−68%）；60 组真实数据校准，浮点自检与人工标注占比一致。</td></tr>
+<tr><td class="c"><b>已完成</b></td><td>精度与稳定性评测</td><td>LEVIR-CD 全量 2 048 对：F1 0.8648 / IoU 0.7617；300 s 拷机温度 +1.23 ℃、吞吐 −0.04%，无热降频。</td></tr>
+<tr><td class="c"><b>进行中</b></td><td>整机定型（箱体／供电／显示）</td><td>12 V 锂电 + 自研降压模块方案已定，铝箱打样中；目标开箱即用、无风扇被动散热。</td></tr>
+<tr><td class="c"><b>进行中</b></td><td>预处理性能优化</td><td>瓶颈在 CPU 侧预处理（27.15 ms，占 66%），正在下沉并行化，目标端到端 ≤ 25 ms。</td></tr>
+<tr><td class="c"><b>待启动</b><br><span class="src">需资源</span></td><td>省内县级试点与意向书</td><td><b>目前尚无签约客户与营收。</b>计划以「免费试用 3 个月 + 陪跑部署」，经院校产学研渠道落地 1~2 个县级单位，取得反馈与意向书。</td></tr>
+</table>
+<div class="cap">表 3　落地进展清单</div>
+
+
+<h2>6.1 运营节奏</h2>
+<div class="road">
+  <div class="r"><b>第 1 阶段 · 打样</b>完成整机定型与出厂测试规范，产出 2~3 台可交付样机。</div>
+  <div class="r"><b>第 2 阶段 · 试点</b>1~2 个县级单位免费试用，驻场培训，采集本地样本并微调区域模型。</div>
+  <div class="r"><b>第 3 阶段 · 转化</b>以试用报告＋意向书推动首单，同时与无人机服务商签集成分销合作。</div>
+  <div class="r"><b>第 4 阶段 · 复制</b>以样板客户带动同系统内复制，扩展至地市级单位与巡检服务商批量采购。</div>
+</div>
+<p class="note">注：以上为学业与项目并行下的保守估计，每阶段预留一个学期，避免"三个月覆盖全省"式承诺。</p>
+</div>
+
+<!-- ================= 7 TEAM ================= -->
+<div class="page">
+<h1 class="sec">七、团队介绍<small>TEAM</small></h1>
+<p>评委关心的不是绩点，而是<b>团队配置是否互补、这件事为什么由你们来做</b>。我们的四人配置覆盖从算法到落地的四个环节，没有缺口。</p>
+<div class="org">
+  <div><span class="r">算法负责人</span>【待填：姓名 / 专业】<br>RTMA-Net 结构设计、训练与评测；量化与精度对齐。</div>
+  <div><span class="r">嵌入式与硬件</span>【待填：姓名 / 专业】<br>RDK X5 板端部署、int8 量化链路、自研 12 V 降压模块与整机结构散热。</div>
+  <div><span class="r">软件工程师</span>【待填：姓名 / 专业】<br>Flask 服务与前端工作站：六视图联动、误差四色图、指标卡、结果导出。</div>
+  <div><span class="r">行业与商务</span>【待填：姓名 / 专业】<br>遥感业务需求梳理、客户走访与试点对接、定价与合同推进。</div>
+</div>
+<div class="cap">图 6　团队构成与分工</div>
+<h2>7.1 指导与产学研支撑</h2>
+<table>
+<tr><th style="width:22%">角色</th><th>姓名 / 单位</th><th>为项目提供什么</th></tr>
+<tr><td>指导教师</td><td>【待填：姓名 / 职称 / 学院】</td><td>算法方向指导、实验条件与研究经费支持；技术可信度背书。</td></tr>
+<tr><td>行业顾问</td><td>【待填：如有则填】</td><td>真实业务需求与数据来源；打通试点对接渠道。</td></tr>
+<tr><td>产学研合作单位</td><td>【待填：学院 / 实验室 / 企业】</td><td>场地、算力与真实样本；新工科加分项，也是首批试点入口。</td></tr>
+</table>
+
+<div class="card"><b>为什么是我们：</b>这个项目最难的不是把算法做出来，也不是把模型塞进板子，而是<b>同时做到这两件事</b>。我们恰好一端懂模型结构与量化、另一端懂板端部署与供电，并已完整走通一遍——10.2 MB 浮点权重到 3.2 MB 板端定点模型，不是纸上的流程图。</div>
+</div>
+<!-- ================= 8 FINANCIALS ================= -->
+<div class="page">
+<h1 class="sec">八、财务预测<small>FINANCIAL FORECAST</small></h1>
+<p>财务部分不怕保守，怕的是没有假设依据——下面每个数字都跟着它的假设条件。<b>第一年只做 6 台整机</b>，这是学业并行下可信的节奏。</p>
+<table>
+<tr><th style="width:30%">项目</th><th class="c" style="width:23%">第 1 年（Y1）</th><th class="c" style="width:23%">第 2 年（Y2）</th><th class="c">第 3 年（Y3）</th></tr>
+<tr><td><b>整机销售</b></td><td class="c">6 台 × 3.8 万 = <b>22.8</b></td><td class="c">25 台 × 3.6 万 = <b>90.0</b></td><td class="c">80 台 × 3.4 万 = <b>272.0</b></td></tr>
+<tr><td><b>软件年费</b></td><td class="c">3 家 × 1.2 万 = <b>3.6</b></td><td class="c">15 家 × 1.5 万 = <b>22.5</b></td><td class="c">50 家 × 1.6 万 = <b>80.0</b></td></tr>
+<tr><td><b>定制模型服务</b></td><td class="c">—</td><td class="c">2 项 × 4 万 = <b>8.0</b></td><td class="c">6 项 × 5 万 = <b>30.0</b></td></tr>
+<tr style="background:#E9F1F9"><td><b>营业收入合计（万元）</b></td><td class="c"><b>26.4</b></td><td class="c"><b>120.5</b></td><td class="c"><b>382.0</b></td></tr>
+<tr><td>　整机 BOM</td><td class="c">5.4</td><td class="c">21.3</td><td class="c">65.6</td></tr>
+<tr><td>　算力与云服务</td><td class="c">2.0</td><td class="c">6.0</td><td class="c">15.0</td></tr>
+<tr><td>　人力与劳务</td><td class="c">18.0</td><td class="c">38.0</td><td class="c">96.0</td></tr>
+<tr><td>　差旅、营销与渠道</td><td class="c">4.0</td><td class="c">10.0</td><td class="c">28.0</td></tr>
+<tr><td>　认证、测试与知识产权</td><td class="c">1.6</td><td class="c">3.0</td><td class="c">8.0</td></tr>
+<tr><td><b>成本合计（万元）</b></td><td class="c"><b>31.0</b></td><td class="c"><b>78.3</b></td><td class="c"><b>212.6</b></td></tr>
+<tr style="background:#E9F1F9"><td><b>净利润（万元）</b></td><td class="c"><b>−4.6</b></td><td class="c"><b>+42.2</b></td><td class="c"><b>+169.4</b></td></tr>
+</table>
+<div class="chart">
+  <div class="b"><i class="rev" style="height:6.9%"></i><i class="cost" style="height:8.1%"></i><i class="prf" style="height:1.5%"></i></div>
+  <div class="b"><i class="rev" style="height:31.5%"></i><i class="cost" style="height:20.5%"></i><i class="prf" style="height:11.1%"></i></div>
+  <div class="b"><i class="rev" style="height:100%"></i><i class="cost" style="height:55.7%"></i><i class="prf" style="height:44.3%"></i></div>
+</div>
+<div class="legend"><span><i style="background:#1F5C99"></i>营业收入</span><span><i style="background:#BFCBD8"></i>成本</span><span><i style="background:#17795E"></i>净利润</span><span style="color:#7B8794">单位：万元　Y1→Y3 分别为 26.4 / 120.5 / 382.0</span></div>
+<div class="cap">图 7　三年收入、成本与净利润预测（Y1 净利 −4.6 万元，图中显示为极细条）</div>
+<h2>8.1 关键假设（每个数字的依据）</h2>
+<table>
+<tr><th style="width:23%">假设项</th><th style="width:20%">取值</th><th>依据</th></tr>
+<tr><td>整机售价</td><td class="c">3.8 → 3.6 → 3.4 万</td><td>首发按小批量试制成本加成定价，随 BOM 下降与走量逐步让利。</td></tr>
+<tr><td>单台 BOM</td><td class="c">0.9 → 0.85 → 0.82 万</td><td>主控板卡、7 寸屏、电池、降压模块与铝箱合计。<b>【需以实际打样成本校准】</b></td></tr>
+<tr><td>软件年费</td><td class="c">1.2 → 1.5 → 1.6 万</td><td>含模型更新与远程维护，随区域模型版本增多小幅上调。</td></tr>
+<tr><td>Y1 客户数</td><td class="c">6 台 / 3 家</td><td>按一所高校一年内可完成的打样产能与试点转化率估算，属保守值。</td></tr>
+<tr><td>Y3 客户数</td><td class="c">80 台 / 50 家</td><td>对应第二章 SOM 口径（3 年累计约 530 万元，占广东 SAM 约 0.31%）。</td></tr>
+<tr><td>人力成本</td><td class="c">18 / 38 / 96 万</td><td>毕业前以兼职与劳务为主，毕业后转正式聘用，未计股权激励。</td></tr>
+<tr><td>盈亏平衡</td><td class="c">第 19 个月</td><td>Y1 末累计亏损 4.6 万元，按收入逐季爬坡估算转正；若签约提前可至第 15 个月。</td></tr>
+</table>
+
+</div>
+
+<!-- ================= 9 FINANCING & RISK ================= -->
+<div class="page">
+<h1 class="sec">九、融资计划与风险<small>FINANCING &amp; RISK</small></h1>
+<h2>9.1 融资需求：要多少、花在哪、释放多少股权</h2>
+<table>
+<tr><th style="width:56%">用途</th><th class="c" style="width:20%">金额</th><th class="c" style="width:24%">占比</th></tr>
+<tr><td>研发与团队（毕业后转全职人力、算法迭代与实时性优化）</td><td class="c">67.5 万</td><td class="c">45%</td></tr>
+<tr><td>样机小批量与物料（箱体开模、板卡与屏采购、供电模块定型）</td><td class="c">45.0 万</td><td class="c">30%</td></tr>
+<tr><td>市场与渠道（试点驻场、演示物料、分销合作推进）</td><td class="c">22.5 万</td><td class="c">15%</td></tr>
+<tr><td>认证与知识产权（软著与专利、产品检测与合规认证）</td><td class="c">15.0 万</td><td class="c">10%</td></tr>
+<tr style="background:#E9F1F9"><td><b>合计</b>　拟释放股权 <b>10%~12%</b>（<span class="src">需与投资方协商确定</span>）</td><td class="c"><b>150 万</b></td><td class="c"><b>100%</b></td></tr>
+</table>
+<div class="cap">表 4　首轮融资用途拆分</div>
+<p><b>资金对应的里程碑：</b>① v1.0 整机定型并交付 3 台可售样机；② 落地 3 个县级试点并取得意向书；③ 完成首单转化。</p></p>
+
+<h2>9.2 风险与对策：敢写风险，才显得想清楚了</h2>
+<table>
+<tr><th style="width:16%">风险类别</th><th style="width:36%">具体风险</th><th>我们的对策</th></tr>
+<tr><td><b>技术风险</b></td><td>int8 量化后精度下降；目标芯片算子不支持导致返工。</td><td>结构设计阶段即把算子集与数值格式作为约束，已用浮点自检交叉核对。</td></tr>
+<tr><td><b>数据与泛化风险</b></td><td>跨区域、跨传感器精度下降。</td><td>试点期持续采集本地样本微调区域模型，把「越用越准」做成产品能力。</td></tr>
+<tr><td><b>市场与采购风险</b></td><td>基层预算年度化、决策链长，试用后不转化。</td><td>免费试用与陪跑降低门槛；绑定无人机服务商走集成渠道。</td></tr>
+<tr><td><b>竞争风险</b></td><td>大厂下沉端侧，以生态与渠道挤压。</td><td>不争精度峰值，聚焦「离线 + 整机 + 现场交付」细分，用本地样本建立差异。</td></tr>
+<tr><td><b>供应链风险</b></td><td>板卡供货波动或平台迭代导致方案失效。</td><td>算法与平台解耦，更换权重即可平移至其他边缘平台，已验证。</td></tr>
+<tr><td><b>团队风险</b></td><td>成员毕业流动，项目延续中断。</td><td>全流程文档化，依托实验室与课题组承接，新成员一周内可跑通。</td></tr>
+<tr><td><b>合规与安全风险</b></td><td>遥感影像涉及测绘与数据安全要求。</td><td>全程本地推理、数据不出域，天然规避传输与出境合规风险。</td></tr>
+</table>
+<div class="cap">表 5　风险识别与应对</div>
+<div class="card"><b>结论：</b>最大的不确定性不在技术，而在「试点到订单」的转化速度。技术侧最难的一段已跑通，剩下的是把第一批真实用户带回现场。</div></div>
+</div>
+
+</body></html>
+
+
+
+

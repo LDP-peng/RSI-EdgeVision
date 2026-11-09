@@ -1,0 +1,42 @@
+# ================= 大文件 / 硬件镜像（不要上传）=================
+rdk-x5-*.img
+rdk-x5-*.img.xz
+*.img
+*.img.xz
+
+# ================= 实验产物 / 压缩包 =================
+Results(1)/
+Results(1).rar
+*.rar
+*.zip
+
+# ================= 密钥（务必不要上传）=================
+qwen_api.json
+siliconflow_config.json
+.env
+*.pem
+*.key
+*_api.json
+
+# ================= Python 缓存 =================
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ================= 第三方参考工程 =================
+ABC-Net-2/
+ABC-Net-2.rar
+
+# ================= 编辑器 / 系统文件 =================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ================= 日志 =================
+*.log
+nohup.out
+# 第三方赛事参考文档（不公开）
+21届-研电赛*.pdf
+2026广东省*.pdf

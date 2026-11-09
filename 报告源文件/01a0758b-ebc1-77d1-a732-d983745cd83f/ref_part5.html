@@ -1,0 +1,89 @@
+
+<!-- ============ 实验结果 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>07 / 实验结果</div></div>
+
+  <h1 class="sec">实验结果</h1>
+  <div class="subsec">全部指标在 RDK X5 板端以 int8 量化模型实测</div>
+
+  <div class="panel"><svg viewBox="0 0 980 232" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei, sans-serif">
+  <defs>
+    <linearGradient id="b1" x1="0" x2="1"><stop offset="0" stop-color="#2d82ff"/><stop offset="1" stop-color="#5fd8ff"/></linearGradient>
+    <linearGradient id="b2" x1="0" x2="1"><stop offset="0" stop-color="#00b3a4"/><stop offset="1" stop-color="#4ee0cf"/></linearGradient>
+  </defs>
+  <text x="20" y="22" fill="#5fd8ff" font-size="12.5" font-weight="700">LEVIR-CD 全量测试集（2048 对，板端 int8 模型）</text>
+  
+  <text x="140" y="53" fill="#dbe7f7" font-size="13" text-anchor="end" font-weight="600">Precision</text>
+  <rect x="150" y="36" width="700" height="24" rx="4" fill="#16283f"/>
+  <rect x="150" y="36" width="614.7" height="24" rx="4" fill="url(#b1)"/>
+  <text x="776.7" y="53" fill="#5fd8ff" font-size="13" font-weight="700">0.8782</text>
+  
+  <text x="140" y="87" fill="#dbe7f7" font-size="13" text-anchor="end" font-weight="600">Recall</text>
+  <rect x="150" y="70" width="700" height="24" rx="4" fill="#16283f"/>
+  <rect x="150" y="70" width="596.2" height="24" rx="4" fill="url(#b1)"/>
+  <text x="758.2" y="87" fill="#5fd8ff" font-size="13" font-weight="700">0.8517</text>
+  
+  <text x="140" y="121" fill="#dbe7f7" font-size="13" text-anchor="end" font-weight="600">F1</text>
+  <rect x="150" y="104" width="700" height="24" rx="4" fill="#16283f"/>
+  <rect x="150" y="104" width="605.4" height="24" rx="4" fill="url(#b1)"/>
+  <text x="767.4" y="121" fill="#5fd8ff" font-size="13" font-weight="700">0.8648</text>
+  
+  <text x="140" y="155" fill="#dbe7f7" font-size="13" text-anchor="end" font-weight="600">IoU</text>
+  <rect x="150" y="138" width="700" height="24" rx="4" fill="#16283f"/>
+  <rect x="150" y="138" width="533.2" height="24" rx="4" fill="url(#b2)"/>
+  <text x="695.2" y="155" fill="#5fd8ff" font-size="13" font-weight="700">0.7617</text>
+  <line x1="150" y1="176" x2="850" y2="176" stroke="#2d82ff" stroke-width="1" stroke-opacity=".35"/>
+  <text x="20" y="200" fill="#8ea2bb" font-size="11">UAV 数据集</text>
+  <text x="110" y="200" fill="#4ee0cf" font-size="11.5" font-weight="700">F1 0.7752</text>
+  <text x="215" y="200" fill="#4ee0cf" font-size="11.5" font-weight="700">IoU 0.6329</text>
+  <text x="360" y="200" fill="#8ea2bb" font-size="11">单帧输入 256×256 · 双时相拼接 6 通道</text>
+</svg></div>
+  <figcaption>图 3　板端量化模型精度指标</figcaption>
+
+  <h2 class="blk">量化前后精度对比</h2>
+  <table>
+    <tr><th style="width:150px">对比项</th><th style="width:150px">浮点模型（CPU）</th><th style="width:150px">板端 int8 模型</th><th>结论</th></tr>
+    <tr>
+      <td class="k">变化像素占比</td>
+      <td>0.1885</td>
+      <td>—</td>
+      <td rowspan="2">浮点自检的预测占比（0.1885）与真实标签占比（0.2012）高度接近，说明<b>模型与预处理正确</b>；量化后板端 F1 仍达 0.8648，说明<b>量化基本无损</b>。</td>
+    </tr>
+    <tr><td class="k">真实标签占比</td><td>0.2012</td><td>—</td></tr>
+    <tr><td class="k">F1</td><td>—</td><td><b>0.8648</b></td><td>端侧精度对标主流方法</td></tr>
+    <tr><td class="k">模型体积</td><td>10.2 MB（.pth）</td><td><b>3.2 MB</b>（.bin）</td><td>压缩约 68%，满足 4 GB 板卡部署</td></tr>
+  </table>
+
+  <div class="tip">
+    <b>一句话结论：</b>本作品做到了"<b>压缩 68% 体积，精度基本不掉</b>"——
+    这既是算法设计为量化预留空间的结果，也是真实数据校准策略的直接收益。
+  </div>
+
+  <div class="pnum">7</div>
+</div>
+
+<!-- ============ 可视化 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>08 / 可视化结果</div></div>
+
+  <h1 class="sec">检测效果可视化</h1>
+  <div class="subsec">左起：前时相 → 后时相 → 人工标注真值 → 模型预测</div>
+
+  <h2 class="blk">典型正确案例：建筑区整体变化</h2>
+  
+  <div class="lblrow"><span>T1 前时相</span><span>T2 后时相</span><span>GT 真值</span><span>Pred 预测</span></div>
+  <figure><img src="fig_quad_good.png" alt=""><figcaption>图 4　前时相为密集建筑与绿地，后时相建筑已拆除变为裸地；模型将整片变化区域完整检出，边界与真值高度吻合（预测变化占比 0.1783 vs 真值 0.1897）</figcaption></figure>
+
+  <h2 class="blk">典型误报案例：小目标误判</h2>
+  
+  <div class="lblrow"><span>T1 前时相</span><span>T2 后时相</span><span>GT 真值</span><span>Pred 预测</span></div>
+  <figure><img src="fig_quad_fp.png" alt=""><figcaption>图 5　真值为无变化区域，模型在若干位置产生了零散的小块误报（预测 0.0263 vs 真值 0）。误报面积小、分布零散，可通过置信度阈值与后处理连通域过滤进一步抑制</figcaption></figure>
+
+  <div class="tip">
+    <b>误差分析结论：</b>模型的主要误差来自<b>细小块状目标的误报</b>，而非大面积漏检。
+    这类误差对变化面积的统计影响有限，且可通过阈值调节与形态学后处理有效抑制——
+    这为后续在板端加入<b>自适应阈值</b>与<b>连通域过滤</b>提供了明确方向。
+  </div>
+
+  <div class="pnum">8</div>
+</div>

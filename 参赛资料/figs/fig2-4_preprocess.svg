@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="640" viewBox="0 0 1400 640">
+<defs><filter id="sh" x="-8%" y="-14%" width="116%" height="132%"><feDropShadow dx="0" dy="1.5" stdDeviation="2.6" flood-color="#0F1A24" flood-opacity="0.09"/></filter></defs>
+<style>
+ text{font-family:"Microsoft YaHei","SimHei",sans-serif;fill:#0F1A24;}
+ .mono{font-family:"Consolas","Courier New",monospace;}
+ .h1{font-size:32px;font-weight:bold;} .sub{font-size:18.5px;fill:#5C6B7A;}
+ .lab{font-size:13px;fill:#8A97A4;letter-spacing:1.6px;} .no{font-size:13px;fill:#A8B4C0;letter-spacing:1px;}
+ .ctit{font-size:18px;font-weight:bold;} .cdet{font-size:15px;fill:#5C6B7A;}
+ .shape{font-size:14px;fill:#2C3E50;} .nm{font-size:19px;font-weight:bold;}
+ .fl{font-size:15.5px;fill:#3C4C5C;} .nt{font-size:14px;fill:#8A97A4;}
+ .cnst{font-size:18px;fill:#12325B;}
+</style>
+<rect x="0" y="0" width="1400" height="640" fill="#FFFFFF"/>
+<text class="h1" x="70" y="60">预处理链路一致性</text>
+<text class="sub" x="70" y="96">同一套处理顺序与常量，在导出 / 校准 / 量化 / 板端推理四处必须逐位一致</text>
+<line x1="70" y1="120" x2="1330" y2="120" stroke="#E3E8EE" stroke-width="1.4"/>
+<rect x="70" y="140" width="196" height="132" rx="10" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<text class="no" x="88" y="170">01</text>
+<text class="ctit" x="88" y="202">图像读取</text>
+<text class="cdet" x="88" y="230">cv2.imread()</text>
+<rect x="88" y="242" width="160" height="24" rx="6" fill="#F2F6FA"/>
+<text class="shape mono" x="168" y="259" text-anchor="middle">H×W×3 · BGR</text>
+<path d="M269,212 L277,220 L269,228" fill="none" stroke="#B4C0CC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="280" y="140" width="196" height="132" rx="10" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<text class="no" x="298" y="170">02</text>
+<text class="ctit" x="298" y="202">6 通道拼接</text>
+<text class="cdet" x="298" y="230">时相 A ‖ 时相 B</text>
+<rect x="298" y="242" width="160" height="24" rx="6" fill="#F2F6FA"/>
+<text class="shape mono" x="378" y="259" text-anchor="middle">H×W×6</text>
+<path d="M479,212 L487,220 L479,228" fill="none" stroke="#B4C0CC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="490" y="140" width="196" height="132" rx="10" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<text class="no" x="508" y="170">03</text>
+<text class="ctit" x="508" y="202">归一化</text>
+<text class="cdet" x="508" y="230">÷255 后标准化</text>
+<rect x="508" y="242" width="160" height="24" rx="6" fill="#F2F6FA"/>
+<text class="shape mono" x="588" y="259" text-anchor="middle">float32 · H×W×6</text>
+<path d="M689,212 L697,220 L689,228" fill="none" stroke="#B4C0CC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="700" y="140" width="196" height="132" rx="10" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<text class="no" x="718" y="170">04</text>
+<text class="ctit" x="718" y="202">通道反转</text>
+<text class="cdet" x="718" y="230">BGR → RGB</text>
+<rect x="718" y="242" width="160" height="24" rx="6" fill="#F2F6FA"/>
+<text class="shape mono" x="798" y="259" text-anchor="middle">H×W×6</text>
+<path d="M899,212 L907,220 L899,228" fill="none" stroke="#B4C0CC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="910" y="140" width="196" height="132" rx="10" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<text class="no" x="928" y="170">05</text>
+<text class="ctit" x="928" y="202">维度转置</text>
+<text class="cdet" x="928" y="230">HWC → CHW</text>
+<rect x="928" y="242" width="160" height="24" rx="6" fill="#F2F6FA"/>
+<text class="shape mono" x="1008" y="259" text-anchor="middle">6×H×W</text>
+<path d="M1109,212 L1117,220 L1109,228" fill="none" stroke="#B4C0CC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1120" y="140" width="196" height="132" rx="10" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<text class="no" x="1138" y="170">06</text>
+<text class="ctit" x="1138" y="202">切片双输入</text>
+<text class="cdet" x="1138" y="230">x1←[:3] · x2←[3:]</text>
+<rect x="1138" y="242" width="160" height="24" rx="6" fill="#F2F6FA"/>
+<text class="shape mono" x="1218" y="259" text-anchor="middle">2×1×3×H×W</text>
+<text class="lab" x="70" y="304">同一顺序在四处复用</text>
+<rect x="70" y="320" width="296" height="110" rx="10" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.3"/>
+<circle cx="104" cy="374" r="16" fill="#E6F4EF" stroke="#B7DDCE" stroke-width="1"/>
+<path d="M96,374 L102,380 L112,368" fill="none" stroke="#17795E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text class="nm" x="132" y="368">导出</text>
+<text class="fl mono" x="132" y="394">export_onnx.py</text>
+<text class="nt" x="132" y="416">固定输入轴 [1, 3, 256, 256]</text>
+<rect x="390" y="320" width="296" height="110" rx="10" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.3"/>
+<circle cx="424" cy="374" r="16" fill="#E6F4EF" stroke="#B7DDCE" stroke-width="1"/>
+<path d="M416,374 L422,380 L432,368" fill="none" stroke="#17795E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text class="nm" x="452" y="368">校准</text>
+<text class="fl mono" x="452" y="394">make_cal_data.py</text>
+<text class="nt" x="452" y="416">与训练完全一致的预处理</text>
+<rect x="710" y="320" width="296" height="110" rx="10" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.3"/>
+<circle cx="744" cy="374" r="16" fill="#E6F4EF" stroke="#B7DDCE" stroke-width="1"/>
+<path d="M736,374 L742,380 L752,368" fill="none" stroke="#17795E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text class="nm" x="772" y="368">量化</text>
+<text class="fl mono" x="772" y="394">config_real.yaml</text>
+<text class="nt" x="772" y="416">norm_type: no_preprocess</text>
+<rect x="1030" y="320" width="296" height="110" rx="10" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.3"/>
+<circle cx="1064" cy="374" r="16" fill="#E6F4EF" stroke="#B7DDCE" stroke-width="1"/>
+<path d="M1056,374 L1062,380 L1072,368" fill="none" stroke="#17795E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text class="nm" x="1092" y="368">板端推理</text>
+<text class="fl mono" x="1092" y="394">infer.py · rdx_infer.py</text>
+<text class="nt" x="1092" y="416">同一套 MEAN / STD 常量</text>
+<rect x="70" y="456" width="1260" height="122" rx="10" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.3"/>
+<text class="nt" x="98" y="488">归一化常量（÷255 后减均值、除标准差；BGR 顺序：前 3 通道为时相 A，后 3 通道为时相 B）</text>
+<text class="cnst mono" x="98" y="522">MEAN = [0.406, 0.456, 0.485, 0.406, 0.456, 0.485]</text>
+<text class="cnst mono" x="98" y="554">STD&#160;&#160;= [0.225, 0.224, 0.229, 0.225, 0.224, 0.229]</text>
+<text class="nt" x="70" y="614">注：x1 取拼接结果的前 3 通道、x2 取后 3 通道，该顺序在导出、校准、量化与板端推理四处完全一致，避免训练 / 推理预处理错配。</text>
+</svg>
+

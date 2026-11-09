@@ -1,0 +1,57 @@
+
+<!-- ============ 背景与意义 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>02 / 背景与意义</div></div>
+
+  <h1 class="sec">背景与意义</h1>
+  <div class="subsec">AI 能力与算力供给之间的鸿沟，正是本作品的出发点</div>
+
+  <h2 class="blk">一、产业背景：模型越来越大，算力却到不了现场</h2>
+  <p>近年来视觉深度网络在精度上持续突破，但参数量与算力需求同步膨胀，推理环节高度依赖云端 GPU 集群。
+  在灾害应急、野外巡检、工业现场等真实场景中，云端推理面临四重约束：</p>
+
+  <div class="cards">
+    <div class="card"><div class="n" style="font-size:12pt">时延</div><div class="t">上行＋排队不可控，灾后按小时计不可接受</div></div>
+    <div class="card"><div class="n" style="font-size:12pt">带宽</div><div class="t">单景影像百兆级，回传成本高</div></div>
+    <div class="card"><div class="n" style="font-size:12pt">合规</div><div class="t">遥感数据出域存在安全风险</div></div>
+    <div class="card"><div class="n" style="font-size:12pt">可用性</div><div class="t">野外断网即失效</div></div>
+  </div>
+
+  <div class="tip"><b>结论：</b>把 AI 算法真正放到设备端，已成为智能感知系统落地的必答题，也是国产边缘算力的核心命题。</div>
+
+  <h2 class="blk">二、场景选择：为什么是遥感变化检测</h2>
+  <p>遥感变化检测要求从同一区域不同时相的影像中识别地物变化，是灾后损毁评估、违建与施工监管、
+  国土动态监测的基础能力。该任务对端侧智能提出了典型而严苛的三重要求：</p>
+  <ul>
+    <li><b>时效以小时计</b>——灾害应急场景下，等待回传与排队不可接受；</li>
+    <li><b>数据量大</b>——单景遥感影像达百兆级，本地处理远优于上传；</li>
+    <li><b>现场无网</b>——无人机、巡检车作业区域普遍没有稳定网络。</li>
+  </ul>
+  <p>换言之，这不是一个"顺手找来的"应用场景，而是端侧智能<b>最刚需、也最苛刻</b>的验证场。</p>
+
+  <h2 class="blk">三、双层挑战：算法要轻，硬件又要能跑</h2>
+  <table>
+    <tr><th style="width:78px">层面</th><th>具体约束</th></tr>
+    <tr><td class="k">算法层</td><td>双时相影像存在光照、阴影、季节等<b>非真实变化干扰</b>；变化目标<b>尺度跨度大</b>；<b>边界细节易丢失</b>，直接影响面积统计。直接裁剪轻量网络会造成精度显著下降。</td></tr>
+    <tr><td class="k">硬件层</td><td>边缘芯片以 <b>int8 定点运算</b>为主，仅支持有限算子集；板卡<b>内存仅 4 GB、无独立 GPU</b>，浮点模型无法直接运行。</td></tr>
+    <tr><td class="k">叠加效应</td><td>算法要保精度就需要更多参数与更高数值精度，硬件却同时限制着体积、带宽与数值格式——<b>精度、体积、速度三者难以同时满足</b>，这正是本作品要解决的核心矛盾。</td></tr>
+  </table>
+
+  <h2 class="blk">四、现有方案的不足</h2>
+  <ul>
+    <li><b>学术侧：</b>研究多在 GPU 服务器上完成精度验证，<b>缺少部署环节</b>，模型能否落板无人回答；</li>
+    <li><b>端侧侧：</b>现有边缘智能工作集中于图像分类与目标检测，<b>像素级语义分割的量化部署实践仍然稀缺</b>；</li>
+    <li><b>云侧：</b>云端方案精度虽高，却无法满足野外离线作业，也回避了数据出域的合规问题。</li>
+  </ul>
+
+  <h2 class="blk">五、本项目的意义</h2>
+  <div class="flow">
+    <div class="st"><div class="i">技术意义</div><div class="h">协同设计范式</div><div class="d">算法结构与量化策略联合优化，形成可复制路径</div></div>
+    <div class="ar">|</div>
+    <div class="st"><div class="i">工程意义</div><div class="h">4 GB 跑通闭环</div><div class="d">在国产边缘平台实现检测·评估·解释一体化</div></div>
+    <div class="ar">|</div>
+    <div class="st"><div class="i">产业意义</div><div class="h">数据不出域</div><div class="d">离线部署于无人机与巡检车，服务灾损评估与国土监测</div></div>
+  </div>
+
+  <div class="pnum">2</div>
+</div>

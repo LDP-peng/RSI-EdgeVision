@@ -1,0 +1,32 @@
+<svg viewBox="0 0 980 232" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei, sans-serif">
+  <defs>
+    <linearGradient id="b1" x1="0" x2="1"><stop offset="0" stop-color="#2d82ff"/><stop offset="1" stop-color="#5fd8ff"/></linearGradient>
+    <linearGradient id="b2" x1="0" x2="1"><stop offset="0" stop-color="#00b3a4"/><stop offset="1" stop-color="#4ee0cf"/></linearGradient>
+  </defs>
+  <text x="20" y="22" fill="#5fd8ff" font-size="12.5" font-weight="700">LEVIR-CD 全量测试集（2048 对，板端 int8 模型）</text>
+  
+  <text x="140" y="53" fill="#dbe7f7" font-size="13" text-anchor="end" font-weight="600">Precision</text>
+  <rect x="150" y="36" width="700" height="24" rx="4" fill="#16283f"/>
+  <rect x="150" y="36" width="614.7" height="24" rx="4" fill="url(#b1)"/>
+  <text x="776.7" y="53" fill="#5fd8ff" font-size="13" font-weight="700">0.8782</text>
+  
+  <text x="140" y="87" fill="#dbe7f7" font-size="13" text-anchor="end" font-weight="600">Recall</text>
+  <rect x="150" y="70" width="700" height="24" rx="4" fill="#16283f"/>
+  <rect x="150" y="70" width="596.2" height="24" rx="4" fill="url(#b1)"/>
+  <text x="758.2" y="87" fill="#5fd8ff" font-size="13" font-weight="700">0.8517</text>
+  
+  <text x="140" y="121" fill="#dbe7f7" font-size="13" text-anchor="end" font-weight="600">F1</text>
+  <rect x="150" y="104" width="700" height="24" rx="4" fill="#16283f"/>
+  <rect x="150" y="104" width="605.4" height="24" rx="4" fill="url(#b1)"/>
+  <text x="767.4" y="121" fill="#5fd8ff" font-size="13" font-weight="700">0.8648</text>
+  
+  <text x="140" y="155" fill="#dbe7f7" font-size="13" text-anchor="end" font-weight="600">IoU</text>
+  <rect x="150" y="138" width="700" height="24" rx="4" fill="#16283f"/>
+  <rect x="150" y="138" width="533.2" height="24" rx="4" fill="url(#b2)"/>
+  <text x="695.2" y="155" fill="#5fd8ff" font-size="13" font-weight="700">0.7617</text>
+  <line x1="150" y1="176" x2="850" y2="176" stroke="#2d82ff" stroke-width="1" stroke-opacity=".35"/>
+  <text x="20" y="200" fill="#8ea2bb" font-size="11">UAV 数据集</text>
+  <text x="110" y="200" fill="#4ee0cf" font-size="11.5" font-weight="700">F1 0.7752</text>
+  <text x="215" y="200" fill="#4ee0cf" font-size="11.5" font-weight="700">IoU 0.6329</text>
+  <text x="360" y="200" fill="#8ea2bb" font-size="11">单帧输入 256×256 · 双时相拼接 6 通道</text>
+</svg>

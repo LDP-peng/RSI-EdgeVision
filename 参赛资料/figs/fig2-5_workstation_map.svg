@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1170" viewBox="0 0 1200 1170">
+<style>
+text{font-family:"Microsoft YaHei","SimHei",sans-serif}
+.h1{font-size:30px;font-weight:700;fill:#12325B}
+.sub{font-size:16px;fill:#5A6B7E}
+.cd{fill:#FFFFFF;stroke:#E3E8EE}
+.bl{font-size:13px;font-weight:700;fill:#12325B}
+.lb{font-size:11px;fill:#7A8899}
+.mn{font-family:Consolas,monospace;font-size:11.5px;fill:#3D5266}
+.vl{font-size:15px;font-weight:700;fill:#12325B}
+.bt{fill:#F4F7FA;stroke:#D8E0E8}
+.btt{font-size:12.5px;fill:#3D5266}
+.bg{fill:#1F5C99}
+.bn{fill:#FFFFFF;font-size:13px;font-weight:700;text-anchor:middle}
+.ph{fill:#EDF2F7}
+.sn{font-size:11.5px;fill:#3D5266}
+.li{font-size:14.5px;fill:#3D5266}
+</style>
+<defs>
+<filter id="sh" x="-8%" y="-14%" width="116%" height="132%">
+<feDropShadow dx="0" dy="1.5" stdDeviation="2.6" flood-color="#0F1A24" flood-opacity="0.09"/>
+</filter>
+<clipPath id="cv"><rect x="82" y="480" width="517" height="84" rx="6"/></clipPath>
+</defs>
+<rect width="1200" height="1170" fill="#FFFFFF"/>
+
+<text class="h1" x="52" y="50">端侧一体化检测工作站 · 功能分区</text>
+<text class="sub" x="52" y="79">Flask 本地服务 · 浏览器直连 · 1024×600 板载触摸屏自适应 · 模型常驻内存，只加载一次</text>
+<line x1="52" y1="96" x2="1148" y2="96" stroke="#E3E8EE" stroke-width="1.5"/>
+
+<rect x="52" y="112" width="1096" height="852" rx="14" fill="#F5F8FA" stroke="#DCE4EC" stroke-width="1.5"/>
+
+<text class="h1" x="84" y="151" font-size="18">边缘遥感变化检测工作站</text>
+<text class="lb" x="84" y="170">基于端侧部署的实时空间遥感变化检测系统</text>
+<text x="1116" y="161" text-anchor="end" font-size="13" fill="#1F5C99">当前数据源：test_256 / pair_0173</text>
+
+<g>
+<rect class="bt" x="68" y="188" width="200" height="36" rx="8"/>
+<text class="btt" x="168" y="211" text-anchor="middle">读取目录</text>
+<rect class="bt" x="280" y="188" width="200" height="36" rx="8"/>
+<text class="btt" x="380" y="211" text-anchor="middle">开始检测</text>
+<rect class="bt" x="492" y="188" width="200" height="36" rx="8"/>
+<text class="btt" x="592" y="211" text-anchor="middle">影像评估</text>
+<rect class="bt" x="704" y="188" width="200" height="36" rx="8"/>
+<text class="btt" x="804" y="211" text-anchor="middle">AI 解释</text>
+<rect class="bt" x="916" y="188" width="200" height="36" rx="8"/>
+<text class="btt" x="1016" y="211" text-anchor="middle">导出结果</text>
+<circle class="bg" cx="688" cy="192" r="11"/><text class="bn" x="688" y="196.5">8</text>
+<circle class="bg" cx="1112" cy="192" r="11"/><text class="bn" x="1112" y="196.5">9</text>
+</g>
+
+<text class="lb" x="68" y="252">数据目录</text>
+<rect x="68" y="258" width="340" height="24" rx="6" fill="#FFFFFF" stroke="#D8E0E8"/>
+<text class="mn" x="78" y="274">/home/sunrise/deploy/test_256</text>
+<text class="lb" x="424" y="252">影像对</text>
+<rect x="424" y="258" width="170" height="24" rx="6" fill="#FFFFFF" stroke="#D8E0E8"/>
+<text class="mn" x="434" y="274">pair_0173</text>
+<text class="lb" x="610" y="252">阈值 0.50</text>
+<rect x="610" y="266" width="190" height="5" rx="2.5" fill="#DCE4EC"/>
+<rect x="610" y="266" width="95" height="5" rx="2.5" fill="#1F5C99"/>
+<circle cx="705" cy="268.5" r="8" fill="#FFFFFF" stroke="#1F5C99" stroke-width="2.5"/>
+<rect x="830" y="262" width="286" height="16" rx="8" fill="#EDF2F7"/>
+<rect x="830" y="262" width="100" height="16" rx="8" fill="#1F5C99"/>
+<text class="lb" x="1124" y="275" text-anchor="end">检测中 35%</text>
+
+<g>
+<rect class="cd" filter="url(#sh)" x="68" y="296" width="203" height="48" rx="8"/>
+<text class="lb" x="82" y="316">Runtime</text><text class="vl" x="82" y="336">hbm_runtime</text>
+<rect class="cd" filter="url(#sh)" x="283" y="296" width="203" height="48" rx="8"/>
+<text class="lb" x="297" y="316">Model</text><text class="vl" x="297" y="336" font-size="14">repbnet_cd.bin</text>
+<rect class="cd" filter="url(#sh)" x="498" y="296" width="203" height="48" rx="8"/>
+<text class="lb" x="512" y="316">Engine</text><text class="vl" x="512" y="336">Horizon BPU</text>
+<rect class="cd" filter="url(#sh)" x="713" y="296" width="203" height="48" rx="8"/>
+<text class="lb" x="727" y="316">Device</text><text class="vl" x="727" y="336">46.2 °C</text>
+<rect class="cd" filter="url(#sh)" x="928" y="296" width="203" height="48" rx="8"/>
+<text class="lb" x="942" y="316">Server</text><text class="vl" x="942" y="336">192.168.1.42</text>
+</g>
+
+<rect class="cd" filter="url(#sh)" x="68" y="356" width="1064" height="84" rx="10"/>
+<text class="bl" x="82" y="379">设备实时监控</text>
+<circle class="bg" cx="172" cy="374" r="11"/><text class="bn" x="172" y="378.5">7</text>
+<circle cx="900" cy="372" r="4.5" fill="#C77A1E"/><text class="sn" x="910" y="376">温度</text>
+<circle cx="975" cy="372" r="4.5" fill="#1F5C99"/><text class="sn" x="985" y="376">内存</text>
+<circle cx="1050" cy="372" r="4.5" fill="#17795E"/><text class="sn" x="1060" y="376">CPU</text>
+<line x1="82" y1="396" x2="1100" y2="396" stroke="#EEF2F7" stroke-width="1"/>
+<line x1="82" y1="411" x2="1100" y2="411" stroke="#EEF2F7" stroke-width="1"/>
+<line x1="82" y1="426" x2="1100" y2="426" stroke="#EEF2F7" stroke-width="1"/>
+<polyline fill="none" stroke="#C77A1E" stroke-width="1.8" points="82,400 126,399 170,401 215,398 259,397 303,399 347,396 392,394 436,395 480,393 524,392 569,394 613,391 657,390 701,392 746,389 790,388 834,390 878,387 923,386 967,388 1011,385 1055,387 1100,386"/>
+<polyline fill="none" stroke="#1F5C99" stroke-width="1.8" points="82,412 126,411 170,413 215,410 259,412 303,409 347,411 392,408 436,410 480,407 524,409 569,406 613,408 657,405 701,407 746,404 790,406 834,403 878,405 923,402 967,404 1011,401 1055,403 1100,402"/>
+<polyline fill="none" stroke="#17795E" stroke-width="1.8" points="82,422 126,421 170,423 215,420 259,422 303,419 347,421 392,418 436,420 480,417 524,419 569,416 613,418 657,415 701,417 746,414 790,416 834,413 878,415 923,412 967,414 1011,411 1055,413 1100,412"/>
+
+<rect class="cd" filter="url(#sh)" x="68" y="448" width="545" height="136" rx="10"/>
+<rect x="82" y="458" width="34" height="17" rx="4" fill="#EAF0F6"/>
+<text x="99" y="471" text-anchor="middle" font-size="10.5" fill="#3D5266">A/B</text>
+<text class="bl" x="126" y="471">前后时相对比</text>
+<circle class="bg" cx="598" cy="462" r="11"/><text class="bn" x="598" y="466.5">1</text>
+<g clip-path="url(#cv)">
+<rect x="82" y="480" width="258.5" height="84" fill="#E8EFF6"/>
+<rect x="340.5" y="480" width="258.5" height="84" fill="#DDE8F3"/>
+</g>
+<rect x="82" y="480" width="517" height="84" rx="6" fill="none" stroke="#D8E0E8"/>
+<text class="sn" x="94" y="502" fill="#4A5C70">T0 前时相</text>
+<text class="sn" x="352" y="502" fill="#4A5C70">T1 后时相</text>
+<line x1="340.5" y1="480" x2="340.5" y2="564" stroke="#FFFFFF" stroke-width="3"/>
+<circle cx="340.5" cy="522" r="11" fill="#FFFFFF" stroke="#1F5C99" stroke-width="2.5"/>
+<text x="340.5" y="526" text-anchor="middle" font-size="10" fill="#1F5C99">◀▶</text>
+<text class="lb" x="82" y="578">左右拖动查看 T0 / T1 同一位置的变化</text>
+
+<rect class="cd" filter="url(#sh)" x="68" y="596" width="545" height="302" rx="10"/>
+<text class="bl" x="82" y="620">六视图联动</text>
+<circle class="bg" cx="598" cy="612" r="11"/><text class="bn" x="598" y="616.5">2</text>
+<g>
+<rect x="80" y="632" width="167" height="118" rx="8" fill="#FBFCFD" stroke="#E8EDF3"/>
+<text class="sn" x="90" y="653">T0 原始影像</text><rect class="ph" x="90" y="662" width="147" height="78" rx="5"/>
+<rect x="257" y="632" width="167" height="118" rx="8" fill="#FBFCFD" stroke="#E8EDF3"/>
+<text class="sn" x="267" y="653">T1 变化影像</text><rect class="ph" x="267" y="662" width="147" height="78" rx="5"/>
+<rect x="434" y="632" width="167" height="118" rx="8" fill="#FBFCFD" stroke="#E8EDF3"/>
+<text class="sn" x="444" y="653">L 手动标注</text><rect class="ph" x="444" y="662" width="147" height="78" rx="5"/>
+<rect x="80" y="760" width="167" height="118" rx="8" fill="#FBFCFD" stroke="#E8EDF3"/>
+<text class="sn" x="90" y="781">P 预测掩膜</text><rect class="ph" x="90" y="790" width="147" height="78" rx="5"/>
+<rect x="257" y="760" width="167" height="118" rx="8" fill="#FBFCFD" stroke="#E8EDF3"/>
+<text class="sn" x="267" y="781">O 叠加图</text><rect class="ph" x="267" y="790" width="147" height="78" rx="5"/>
+<rect x="307" y="818" width="66" height="36" rx="3" fill="#C0392B" fill-opacity="0.14" stroke="#C0392B" stroke-width="1.4" stroke-dasharray="4 3"/>
+<rect x="434" y="760" width="167" height="118" rx="8" fill="#FBFCFD" stroke="#E8EDF3"/>
+<text class="sn" x="444" y="781">H 概率热力图</text><rect class="ph" x="444" y="790" width="147" height="78" rx="5"/>
+</g>
+
+<rect class="cd" filter="url(#sh)" x="629" y="448" width="503" height="150" rx="10"/>
+<text class="bl" x="643" y="470">误差四色图</text>
+<circle class="bg" cx="1116" cy="462" r="11"/><text class="bn" x="1116" y="466.5">3</text>
+<rect x="643" y="478" width="475" height="70" rx="6" fill="#EDF2F7" stroke="#E0E7EF"/>
+<text x="880" y="518" text-anchor="middle" font-size="12" fill="#7A8899">按 TP / FP / FN / TN 逐像素着色</text>
+<g>
+<rect x="643" y="558" width="111" height="22" rx="11" fill="#F7F9FB" stroke="#E8EDF3"/>
+<circle cx="657" cy="569" r="4.5" fill="#17795E"/><text x="667" y="573" font-size="10.5" fill="#3D5266">TP 正确变化</text>
+<rect x="764" y="558" width="111" height="22" rx="11" fill="#F7F9FB" stroke="#E8EDF3"/>
+<circle cx="778" cy="569" r="4.5" fill="#C0392B"/><text x="788" y="573" font-size="10.5" fill="#3D5266">FP 误报</text>
+<rect x="885" y="558" width="111" height="22" rx="11" fill="#F7F9FB" stroke="#E8EDF3"/>
+<circle cx="899" cy="569" r="4.5" fill="#C77A1E"/><text x="909" y="573" font-size="10.5" fill="#3D5266">FN 漏检</text>
+<rect x="1006" y="558" width="111" height="22" rx="11" fill="#F7F9FB" stroke="#E8EDF3"/>
+<circle cx="1020" cy="569" r="4.5" fill="#8A97A6"/><text x="1030" y="573" font-size="10.5" fill="#3D5266">TN 正确负例</text>
+</g>
+
+<rect class="cd" filter="url(#sh)" x="629" y="610" width="503" height="100" rx="10"/>
+<text class="bl" x="643" y="632">变化区域（点选高亮）</text>
+<circle class="bg" cx="1116" cy="624" r="11"/><text class="bn" x="1116" y="628.5">5</text>
+<rect x="643" y="639" width="475" height="22" rx="6" fill="#F7F9FB" stroke="#E8EDF3"/>
+<text x="655" y="654" font-size="11" fill="#3D5266">区域 1 · 中上部 · 面积 3.2%</text>
+<rect x="643" y="663" width="475" height="22" rx="6" fill="#F7F9FB" stroke="#E8EDF3"/>
+<text x="655" y="678" font-size="11" fill="#3D5266">区域 2 · 右下 · 面积 1.1%</text>
+<rect x="643" y="687" width="475" height="22" rx="6" fill="#F7F9FB" stroke="#E8EDF3"/>
+<text x="655" y="702" font-size="11" fill="#3D5266">区域 3 · 左侧 · 面积 0.6%</text>
+
+<rect class="cd" filter="url(#sh)" x="629" y="722" width="503" height="96" rx="10"/>
+<text class="bl" x="643" y="744">精度指标</text>
+<circle class="bg" cx="1116" cy="736" r="11"/><text class="bn" x="1116" y="740.5">4</text>
+<g>
+<rect x="643" y="754" width="112" height="42" rx="6" fill="#F7F9FB" stroke="#E8EDF3"/>
+<text x="653" y="770" font-size="10" fill="#7A8899">Precision</text><text x="653" y="788" font-size="14" font-weight="700" fill="#1F5C99">87.8%</text>
+<rect x="763" y="754" width="112" height="42" rx="6" fill="#F7F9FB" stroke="#E8EDF3"/>
+<text x="773" y="770" font-size="10" fill="#7A8899">Recall</text><text x="773" y="788" font-size="14" font-weight="700" fill="#17795E">85.2%</text>
+<rect x="883" y="754" width="112" height="42" rx="6" fill="#F7F9FB" stroke="#E8EDF3"/>
+<text x="893" y="770" font-size="10" fill="#7A8899">F1</text><text x="893" y="788" font-size="14" font-weight="700" fill="#12325B">86.5%</text>
+<rect x="1003" y="754" width="112" height="42" rx="6" fill="#F7F9FB" stroke="#E8EDF3"/>
+<text x="1013" y="770" font-size="10" fill="#7A8899">IoU</text><text x="1013" y="788" font-size="14" font-weight="700" fill="#6B4FA8">76.2%</text>
+</g>
+<text x="643" y="810" font-size="10" fill="#7A8899">TP / FP / FN / TN：5 823 486 / 807 666 / 1 013 918 / 126 572 658</text>
+
+<rect class="cd" filter="url(#sh)" x="629" y="830" width="503" height="68" rx="10"/>
+<text class="bl" x="643" y="852">AI 语义解释</text>
+<circle class="bg" cx="1116" cy="844" r="11"/><text class="bn" x="1116" y="848.5">6</text>
+<rect x="643" y="862" width="3" height="30" rx="1.5" fill="#6B4FA8"/>
+<text x="654" y="872" font-size="11" fill="#3D5266">后时相新增一处建筑与一条道路，原有裸地被占用；</text>
+<text x="654" y="888" font-size="11" fill="#3D5266">变化集中在中部偏南，建议现场复核。</text>
+
+<rect x="68" y="908" width="1064" height="40" rx="10" fill="#F4F7FA" stroke="#D8E0E8"/>
+<rect x="328" y="916" width="96" height="24" rx="12" fill="#1F5C99"/>
+<text x="376" y="932" text-anchor="middle" font-size="12" fill="#FFFFFF">检测</text>
+<rect x="440" y="916" width="96" height="24" rx="12" fill="#FFFFFF" stroke="#D8E0E8"/>
+<text x="488" y="932" text-anchor="middle" font-size="12" fill="#3D5266">对比</text>
+<rect x="552" y="916" width="96" height="24" rx="12" fill="#FFFFFF" stroke="#D8E0E8"/>
+<text x="600" y="932" text-anchor="middle" font-size="12" fill="#3D5266">模型</text>
+<rect x="664" y="916" width="96" height="24" rx="12" fill="#FFFFFF" stroke="#D8E0E8"/>
+<text x="712" y="932" text-anchor="middle" font-size="12" fill="#3D5266">评估</text>
+<rect x="776" y="916" width="96" height="24" rx="12" fill="#FFFFFF" stroke="#D8E0E8"/>
+<text x="824" y="932" text-anchor="middle" font-size="12" fill="#3D5266">关机</text>
+
+<text class="h1" x="52" y="1004" font-size="16">功能区对应</text>
+<g>
+<circle class="bg" cx="63" cy="1028" r="11"/><text class="bn" x="63" y="1032.5">1</text>
+<text class="li" x="82" y="1032">双时相切换对比 · A/B 叠放拖动对照</text>
+<circle class="bg" cx="436" cy="1028" r="11"/><text class="bn" x="436" y="1032.5">2</text>
+<text class="li" x="455" y="1032">六视图联动 · 六张结果图同屏</text>
+<circle class="bg" cx="809" cy="1028" r="11"/><text class="bn" x="809" y="1032.5">3</text>
+<text class="li" x="828" y="1032">误差四色图 · TP / FP / FN / TN 着色</text>
+
+<circle class="bg" cx="63" cy="1068" r="11"/><text class="bn" x="63" y="1072.5">4</text>
+<text class="li" x="82" y="1072">精度指标 · P / R / F1 / IoU 实时重算</text>
+<circle class="bg" cx="436" cy="1068" r="11"/><text class="bn" x="436" y="1072.5">5</text>
+<text class="li" x="455" y="1072">变化区域点选 · 连通域列表点选高亮</text>
+<circle class="bg" cx="809" cy="1068" r="11"/><text class="bn" x="809" y="1072.5">6</text>
+<text class="li" x="828" y="1072">AI 语义解释 · qwen-vl-max 中文结论</text>
+
+<circle class="bg" cx="63" cy="1108" r="11"/><text class="bn" x="63" y="1112.5">7</text>
+<text class="li" x="82" y="1112">设备实时监控 · 温度 / 内存 / CPU 火花线</text>
+<circle class="bg" cx="436" cy="1108" r="11"/><text class="bn" x="436" y="1112.5">8</text>
+<text class="li" x="455" y="1112">批量评估 · 测试集逐对推理累计混淆矩阵</text>
+<circle class="bg" cx="809" cy="1108" r="11"/><text class="bn" x="809" y="1112.5">9</text>
+<text class="li" x="828" y="1112">结果导出 · 结果图 + 指标 + AI 文字打包</text>
+</g>
+</svg>

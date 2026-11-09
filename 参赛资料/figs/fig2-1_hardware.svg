@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1060" viewBox="0 0 1400 1060">
+<defs>
+  <filter id="sh" x="-8%" y="-14%" width="116%" height="132%"><feDropShadow dx="0" dy="1.5" stdDeviation="2.6" flood-color="#0F1A24" flood-opacity="0.09"/></filter>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3.2" orient="auto"><path d="M0,0 L6,3.2 L0,6.4 z" fill="#B9C5D2"/></marker>
+</defs>
+<style>
+ text { font-family: "Microsoft YaHei","SimHei",sans-serif; fill:#0F1A24; }
+ .mono { font-family:"Consolas","Courier New",monospace; }
+ .h1{font-size:32px;font-weight:bold;}
+ .sub{font-size:18.5px;fill:#5C6B7A;}
+ .lyr{font-size:19px;font-weight:bold;}
+ .lyrs{font-size:13.5px;fill:#7C8B9A;}
+ .cm{font-size:16px;font-weight:bold;}
+ .cs{font-size:13.5px;fill:#7C8B9A;}
+ .ban{font-size:16.5px;fill:#12325B;}
+ .banm{font-size:16.5px;font-weight:bold;fill:#12325B;}
+ .tag{font-size:13px;fill:#FFFFFF;font-weight:bold;}
+</style>
+<rect x="0" y="0" width="1400" height="1060" fill="#FFFFFF"/>
+<text class="h1" x="70" y="60">硬件整体架构</text>
+<text class="sub" x="70" y="96">感知输入 &#8594; RDK X5 计算核心 &#8594; 通信显示，12 V 锂电池供电、铝合金箱体承载</text>
+<line x1="70" y1="120" x2="1330" y2="120" stroke="#E3E8EE" stroke-width="1.4"/>
+
+<!-- L1 感知与输入 -->
+<rect x="70" y="150" width="1260" height="118" rx="12" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<rect x="84" y="166" width="176" height="86" rx="10" fill="#E8F3EE" stroke="#BFDCCE" stroke-width="1.2"/>
+<text class="lyr" x="172" y="204" text-anchor="middle">感知与输入</text>
+<text class="lyrs" x="172" y="228" text-anchor="middle">影像源与扩展接口</text>
+<g>
+ <rect x="280" y="178" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="402" y="206" text-anchor="middle">遥感双时相影像</text><text class="cs" x="402" y="228" text-anchor="middle">microSD 卡导入 A / B</text>
+ <rect x="544" y="178" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="666" y="206" text-anchor="middle">千兆网共享目录</text><text class="cs" x="666" y="228" text-anchor="middle">板端读取数据集</text>
+ <rect x="808" y="178" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="930" y="206" text-anchor="middle">USB 3.0 移动存储</text><text class="cs" x="930" y="228" text-anchor="middle">现场拷贝影像</text>
+ <rect x="1072" y="178" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="1194" y="206" text-anchor="middle">MIPI CSI 相机接口</text><text class="cs" x="1194" y="228" text-anchor="middle">预留实时采集通道</text>
+</g>
+<line x1="700" y1="272" x2="700" y2="292" stroke="#B9C5D2" stroke-width="1.8" marker-end="url(#ar)"/>
+<text class="cs" x="716" y="288">双时相影像流</text>
+
+<!-- L2 计算核心 -->
+<rect x="70" y="296" width="1260" height="132" rx="12" fill="#F7FAFD" stroke="#CBD9E7" stroke-width="1.5" filter="url(#sh)"/>
+<rect x="84" y="318" width="176" height="88" rx="10" fill="#E4EDF7" stroke="#B9CFE6" stroke-width="1.2"/>
+<text class="lyr" x="172" y="356" text-anchor="middle" fill="#12325B">计算核心</text>
+<text class="lyrs" x="172" y="380" text-anchor="middle">RDK X5 主控板</text>
+<g>
+ <rect x="280" y="318" width="244" height="88" rx="8" fill="#FFFFFF" stroke="#CBD9E7" stroke-width="1.1"/>
+ <text class="cm" x="402" y="348" text-anchor="middle">旭日 5（Sunrise 5）SoC</text><text class="cs" x="402" y="372" text-anchor="middle">8 核 Cortex-A55 @ 1.5 GHz</text><text class="cs" x="402" y="392" text-anchor="middle">流程控制与前后处理</text>
+ <rect x="544" y="318" width="244" height="88" rx="8" fill="#FFF6E6" stroke="#E6C98A" stroke-width="1.3"/>
+ <text class="cm" x="666" y="348" text-anchor="middle" fill="#8A5B00">BPU 10 TOPS INT8</text><text class="cs" x="666" y="372" text-anchor="middle">模型定点推理加速</text><text class="cs" x="666" y="392" text-anchor="middle">change_map 输出</text>
+ <rect x="808" y="318" width="244" height="88" rx="8" fill="#FFFFFF" stroke="#CBD9E7" stroke-width="1.1"/>
+ <text class="cm" x="930" y="348" text-anchor="middle">GPU 32 GFLOPS</text><text class="cs" x="930" y="372" text-anchor="middle">可视化渲染</text><text class="cs" x="930" y="392" text-anchor="middle">热力图与叠加图生成</text>
+ <rect x="1072" y="318" width="244" height="88" rx="8" fill="#FFFFFF" stroke="#CBD9E7" stroke-width="1.1"/>
+ <text class="cm" x="1194" y="348" text-anchor="middle">LPDDR4 4 GB</text><text class="cs" x="1194" y="372" text-anchor="middle">模型与影像常驻内存</text><text class="cs" x="1194" y="392" text-anchor="middle">microSD 启动与存储</text>
+</g>
+<line x1="700" y1="432" x2="700" y2="452" stroke="#B9C5D2" stroke-width="1.8" marker-end="url(#ar)"/>
+
+<!-- L3 软硬件适配 -->
+<rect x="70" y="456" width="1260" height="118" rx="12" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<rect x="84" y="472" width="176" height="86" rx="10" fill="#EFEAF7" stroke="#CFC2E6" stroke-width="1.2"/>
+<text class="lyr" x="172" y="510" text-anchor="middle" fill="#4A3577">软硬件适配</text>
+<text class="lyrs" x="172" y="534" text-anchor="middle">结构与算子约束</text>
+<g>
+ <rect x="280" y="484" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="402" y="512" text-anchor="middle">网络结构适配算子集</text><text class="cs" x="402" y="534" text-anchor="middle">按 BPU 支持算子裁剪</text>
+ <rect x="544" y="484" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="666" y="512" text-anchor="middle">张量格式适配</text><text class="cs" x="666" y="534" text-anchor="middle">双输入 NCHW 固定轴</text>
+ <rect x="808" y="484" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="930" y="512" text-anchor="middle">内存带宽与算子校验</text><text class="cs" x="930" y="534" text-anchor="middle">量化前后逐层比对</text>
+ <rect x="1072" y="484" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="1194" y="512" text-anchor="middle">量化位宽与精度校准</text><text class="cs" x="1194" y="534" text-anchor="middle">60 组真实样本校准</text>
+</g>
+<line x1="700" y1="578" x2="700" y2="598" stroke="#B9C5D2" stroke-width="1.8" marker-end="url(#ar)"/>
+
+<!-- L4 通信与交互 -->
+<rect x="70" y="602" width="1260" height="118" rx="12" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<rect x="84" y="618" width="176" height="86" rx="10" fill="#E6EBF2" stroke="#C2CDDA" stroke-width="1.2"/>
+<text class="lyr" x="172" y="656" text-anchor="middle" fill="#12325B">通信与交互</text>
+<text class="lyrs" x="172" y="680" text-anchor="middle">人机接口与外设</text>
+<g>
+ <rect x="280" y="630" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="402" y="658" text-anchor="middle">千兆以太网口</text><text class="cs" x="402" y="680" text-anchor="middle">浏览器访问 :5000</text>
+ <rect x="544" y="630" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="666" y="658" text-anchor="middle">HDMI 输出</text><text class="cs" x="666" y="680" text-anchor="middle">外接大屏演示</text>
+ <rect x="808" y="630" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="930" y="658" text-anchor="middle">7 寸 ISP 高清屏</text><text class="cs" x="930" y="680" text-anchor="middle">箱内本机操作</text>
+ <rect x="1072" y="630" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="1194" y="658" text-anchor="middle">USB 键鼠</text><text class="cs" x="1194" y="680" text-anchor="middle">现场交互</text>
+</g>
+<line x1="700" y1="724" x2="700" y2="744" stroke="#B9C5D2" stroke-width="1.8" marker-end="url(#ar)"/>
+
+<!-- L5 供电与结构 -->
+<rect x="70" y="748" width="1260" height="118" rx="12" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<rect x="84" y="764" width="176" height="86" rx="10" fill="#FAF0DC" stroke="#E0C795" stroke-width="1.2"/>
+<text class="lyr" x="172" y="802" text-anchor="middle" fill="#7A5200">供电与结构</text>
+<text class="lyrs" x="172" y="826" text-anchor="middle">整机承载与散热</text>
+<g>
+ <rect x="280" y="776" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="402" y="804" text-anchor="middle">12 V 安全锂电池</text><text class="cs" x="402" y="826" text-anchor="middle">无外电续航</text>
+ <rect x="544" y="776" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="666" y="804" text-anchor="middle">自研 12 V 降压模块</text><text class="cs" x="666" y="826" text-anchor="middle">兼容 RDK X5 供电</text>
+ <rect x="808" y="776" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="930" y="804" text-anchor="middle">铝合金收纳箱体</text><text class="cs" x="930" y="826" text-anchor="middle">金属外壳被动散热</text>
+ <rect x="1072" y="776" width="244" height="62" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.1"/>
+ <text class="cm" x="1194" y="804" text-anchor="middle">板载温度采点</text><text class="cs" x="1194" y="826" text-anchor="middle">thermal_zone 实时读取</text>
+</g>
+
+<!-- banner -->
+<rect x="70" y="898" width="1260" height="86" rx="12" fill="#F4F8FC" stroke="#CBD9E7" stroke-width="1.3"/>
+<rect x="70" y="898" width="5" height="86" rx="2.5" fill="#1F5C99"/>
+<text class="banm" x="98" y="932">AI 落点：</text>
+<text class="ban" x="182" y="932">BPU 以 int8 执行 RTMA-Net 双时相推理（x1 / x2 各 [1,3,256,256] &#8594; change_map [1,1,256,256]）</text>
+<text class="ban" x="98" y="962">CPU 负责预处理与后处理，GPU 负责渲染，四层协同使模型在无独立显卡的板卡上完成全流程推理</text>
+<text class="cs" x="70" y="1024">数据来源：D-Robotics RDK X5 官方规格书（d-robotics.cc）；整机形态见第七节产品设计</text>
+</svg>

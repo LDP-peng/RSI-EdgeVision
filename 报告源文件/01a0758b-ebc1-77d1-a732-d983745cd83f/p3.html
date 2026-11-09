@@ -1,0 +1,66 @@
+
+<!-- ==================== （二）赛题方向定位 ==================== -->
+<div class="page">
+  <div class="rhead"><div><b>RSI-EdgeVision</b> · 基于 RDK-X5 的遥感图像边缘智能识别终端</div><div>一、项目概述</div></div>
+  <h1 class="bar">一、项目概述</h1>
+  <h2>（二）赛题方向定位</h2>
+  <p>本作品面向「算法创新赛 · AI + 硬件」赛道。与「先做算法、再想办法塞进板子」的常见做法不同，本作品自始至终把<b>硬件约束当作算法设计的前置条件</b>：先用芯片的算子集与数值格式反向约束网络结构，再用真实数据校准保证精度，最后把整条链路封装成可交互的端侧系统。四个层面各自回答一个问题：</p>
+
+  <table>
+    <tr><th style="width:70px">层面</th><th style="width:44%">本作品对应工作</th><th>面向的约束</th></tr>
+    <tr><td class="k">算法</td><td>自研轻量化网络 <b>REPB-Net</b>：共享 MobileNetV2 编码器 + RTRF / MSRB / SAM 三个自研模块</td><td>双时相伪变化干扰、目标尺度跨度大、细长边界易丢失；同时受限于板端内存与算力，参数量必须小</td></tr>
+    <tr><td class="k">边缘端</td><td>打通 <b>PyTorch → ONNX → hb_mapper 真实校准量化 → RDK X5 BPU</b> 全链路，产出 3.2 MB 定点模型</td><td>芯片以 int8 定点运算为主、仅支持有限算子集，浮点模型无法直接运行</td></tr>
+    <tr><td class="k">软件</td><td>端侧一体化工作站：推理引擎 + 指标评估 + 误差分析 + 视觉大模型语义解释 + 结果导出</td><td>板卡内存仅 4 GB、无独立 GPU，需控制常驻内存并保证长时间稳定运行</td></tr>
+    <tr><td class="k">板卡前端</td><td>面向 <b>1024×600</b> 板载小屏的自适应深色界面，支持触摸操作与一键启动</td><td>屏幕小、无键盘鼠标为主、户外强光环境，信息密度与对比度需专门设计</td></tr>
+  </table>
+
+  <h2>赛题考察点与本作品应答</h2>
+  <table>
+    <tr><th style="width:150px">考察方向</th><th>本作品应答</th></tr>
+    <tr><td class="k">算法创新性</td><td>RTRF 互易时相响应融合、MSRB 多尺度细化桥、SAM 注意力解码三个模块，均针对变化检测的固有难点提出，而非简单套用通用骨干</td></tr>
+    <tr><td class="k">软硬件协同</td><td>导出 opset 受限、量化位宽受限、算子集受限三项硬约束被逐一解决，量化后精度与浮点模型基本持平</td></tr>
+    <tr><td class="k">工程完整度</td><td>不止一段推理脚本，而是可操作、可演示、可交付的完整工作站；全部指标在板端以 int8 模型实测，量化故障的排查过程可复现、可讲解</td></tr>
+  </table>
+
+  <div class="tip"><b>赛道契合点：</b>AI + 硬件赛道最核心的考察方向，是团队能否围绕硬件的算力、内存与算子约束做<b>系统性适配</b>。本作品把「能不能跑」推进到「跑得准、跑得稳、看得懂」——这正是本作品的立题依据。</div>
+
+  <div class="flow">
+    <div class="st"><div class="i">STEP 1</div><div class="h">算法可控</div><div class="d">自研 REPB-Net，结构与参数量可调</div></div>
+    <div class="ar">→</div>
+    <div class="st"><div class="i">STEP 2</div><div class="h">可导出</div><div class="d">导出为工具链支持的 ONNX 计算图</div></div>
+    <div class="ar">→</div>
+    <div class="st"><div class="i">STEP 3</div><div class="h">可量化</div><div class="d">真实数据校准，int8 定点化</div></div>
+    <div class="ar">→</div>
+    <div class="st"><div class="i">STEP 4</div><div class="h">可交付</div><div class="d">端侧工作站 + 小屏交互界面</div></div>
+  </div>
+  <div class="rfoot">5</div>
+</div>
+
+<!-- ==================== 二、系统设计与实现 ·（一）算法 ==================== -->
+<div class="page">
+  <div class="rhead"><div><b>RSI-EdgeVision</b> · 基于 RDK-X5 的遥感图像边缘智能识别终端</div><div>二、系统设计与实现</div></div>
+  <h1 class="bar">二、系统设计与实现</h1>
+  <h2>（一）算法：REPB-Net 轻量化变化检测网络</h2>
+  <p>REPB-Net 面向「双时相输入、像素级输出」的变化检测任务设计。双时相影像先经过<b>权重共享</b>的 MobileNetV2 编码器，被映射到同一语义空间；随后依次经过 RTRF 互易时相响应融合、MSRB 多尺度细化桥与 SAM 注意力解码，输出与原图同分辨率的变化概率图。</p>
+
+  <div class="panel">
+<!--SVG0-->
+  </div>
+  <figcaption>图 1　REPB-Net 整体架构：双时相影像经共享编码器进入同一语义空间，再经 RTRF、MSRB、SAM 三级处理输出变化概率图</figcaption>
+
+  <h3>三个自研模块分别解决什么</h3>
+  <table>
+    <tr><th style="width:74px">模块</th><th style="width:36%">做什么</th><th>解决的变化检测难点</th></tr>
+    <tr><td class="k">RTRF</td><td>互易时相响应融合：同时构造差异响应 <b>D</b>、能量响应 <b>E</b> 与一致性响应 <b>G</b>，再做通道路由与空间路由</td><td>光照、阴影、季节差异造成的<b>伪变化</b>在差异响应上很强、在一致性响应上却很弱，借此把「真变化」与「看起来变了」区分开</td></tr>
+    <tr><td class="k">MSRB</td><td>多尺度细化桥：以尺度上下文聚合（SCA）与跨尺度细节融合（CDF）衔接编码器各层级</td><td>变化目标<b>尺度跨度大</b>，从单栋建筑到大片区开发并存，单一尺度难以兼顾</td></tr>
+    <tr><td class="k">SAM</td><td>注意力解码：在解码阶段对通道与空间位置重新加权</td><td><b>细长边界</b>（道路、田埂、围栏）在多次下采样后极易丢失，直接影响面积统计精度</td></tr>
+  </table>
+
+  <h3>关键设计取舍</h3>
+  <ul>
+    <li><b>选 MobileNetV2 而非重型骨干：</b>板卡内存仅 4 GB 且无独立 GPU，参数量必须优先让位于可部署性；倒残差与深度可分离卷积在精度与体积之间给出较好的平衡点。</li>
+    <li><b>共享编码器而非双分支：</b>双时相共用同一套权重，既把参数量压到 247 万，也避免两个分支学到不一致的语义，从根上减少伪变化。</li>
+    <li><b>以模块换深度：</b>不靠堆叠层数提升精度，而是用三个针对性模块解决三类具体难点，使网络在轻量化前提下仍守住边界与细节。</li>
+  </ul>
+  <div class="rfoot">6</div>
+</div>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<style>
+  :root{ --ink:#1b2430; --sub:#5b6b7c; --line:#d8dee6; --accent:#1a5fb4; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:#8a93a0; font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif; padding:24px 0;}
+  .page{width:794px; height:1123px; margin:0 auto 28px; position:relative; overflow:hidden; background:#fff;}
+
+  /* ================= A: 正式报告风 ================= */
+  #a{ padding:96px 84px; color:var(--ink); }
+  #a .rule-top{height:4px; width:100%; background:linear-gradient(90deg,#1a5fb4,#4a90d9 55%,#c9d9ea); }
+  #a .org{margin-top:26px; font-size:15px; letter-spacing:6px; color:var(--sub); text-align:center;}
+  #a .title-block{margin-top:166px;}
+  #a h1{font-size:38px; font-weight:700; letter-spacing:2px; line-height:1.42; text-align:center;}
+  #a .sub{margin-top:20px; font-size:17px; color:var(--sub); letter-spacing:1px; text-align:center; font-weight:400;}
+  #a .divider{margin:52px auto 0; width:132px; height:2px; background:#c9d3de;}
+  #a .meta{margin-top:64px; font-size:14px; line-height:1.95;}
+  #a .meta .row{display:flex; border-bottom:1px solid #eef2f6; padding:5px 0;}
+  #a .meta .k{width:110px; color:var(--sub); letter-spacing:3px; flex:none;}
+  #a .meta .v{color:var(--ink);}
+  #a .meta .v b{font-weight:600;}
+  #a .foot{position:absolute; left:84px; right:84px; bottom:82px; text-align:center; font-size:15px; color:var(--sub); letter-spacing:4px;}
+  #a .rule-bot{position:absolute; left:84px; right:84px; bottom:58px; height:1px; background:var(--line);}
+
+  /* ================= B: 科技风 ================= */
+  #b{ background:#0a1120; color:#e8eef8; padding:0; }
+  #b .grid{position:absolute; inset:0;
+    background-image:linear-gradient(rgba(90,160,255,.075) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(90,160,255,.075) 1px,transparent 1px);
+    background-size:44px 44px;}
+  #b .glow{position:absolute; width:760px; height:760px; right:-260px; top:-300px; border-radius:50%;
+    background:radial-gradient(circle,rgba(45,130,255,.42),rgba(45,130,255,0) 66%);}
+  #b .glow2{position:absolute; width:620px; height:620px; left:-260px; bottom:-260px; border-radius:50%;
+    background:radial-gradient(circle,rgba(0,200,190,.26),rgba(0,200,190,0) 66%);}
+  #b .bar{position:absolute; top:0; left:0; right:0; height:5px;
+    background:linear-gradient(90deg,#2d82ff,#00d7c0 55%,#7a5cff);}
+  #b .inner{position:relative; padding:118px 78px; height:100%; display:flex; flex-direction:column;}
+  #b .brand{font-size:13px; letter-spacing:5px; color:#63a4ff; font-weight:600;}
+  #b .brandline{margin-top:14px; width:74px; height:3px; background:linear-gradient(90deg,#2d82ff,#00d7c0);}
+  #b h1{margin-top:146px; font-size:56px; font-weight:800; letter-spacing:1px; line-height:1.1;
+    background:linear-gradient(92deg,#ffffff 8%,#8fc4ff 52%,#4ee0cf 96%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;}
+  #b .en{margin-top:16px; font-size:13px; letter-spacing:3.6px; color:#7e8ea6; font-weight:600;}
+  #b h2{margin-top:62px; font-size:27px; font-weight:600; letter-spacing:3px; color:#dbe7f7;}
+  #b .cap{margin-top:14px; font-size:14px; color:#8ea2bb; letter-spacing:1.6px;}
+  #b .cards{margin-top:58px; display:flex; gap:14px;}
+  #b .card{flex:1; border:1px solid rgba(90,160,255,.30); border-radius:10px; padding:16px 8px 14px; text-align:center;
+    background:linear-gradient(180deg,rgba(45,130,255,.13),rgba(45,130,255,.02));}
+  #b .card .n{font-size:25px; font-weight:700; color:#5fd8ff; letter-spacing:.5px;}
+  #b .card .t{margin-top:7px; font-size:11px; color:#8ea2bb; letter-spacing:1.4px;}
+  #b .chain{margin-top:44px; font-size:13.5px; color:#9db3cd; letter-spacing:1.4px;}
+  #b .chain span{color:#5fd8ff;}
+  #b .foot{margin-top:auto; padding-top:26px; border-top:1px solid rgba(90,160,255,.20);
+    display:flex; justify-content:space-between; font-size:13px; color:#7e8ea6; letter-spacing:1.6px;}
+</style></head>
+<body>
+
+<!-- ========== 方案 A ========== -->
+<div class="page" id="a">
+  <div class="rule-top"></div>
+  <div class="org">广 州 软 件 学 院</div>
+
+  <div class="title-block">
+    <h1>REPBNet 变化检测算法<br>× RDK X5 端侧部署</h1>
+    <div class="sub">— 算法 × 芯片：从 PyTorch 到地平线 BPU 的完整落地链路 —</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="meta">
+    <div class="row"><div class="k">项目名称</div><div class="v">RSI&#8209;EdgeVision · 基于 RDK X5 的遥感地物智能解析系统</div></div>
+    <div class="row"><div class="k">技术路线</div><div class="v">PyTorch → ONNX → hb_mapper 量化 → RDK X5 端侧推理</div></div>
+    <div class="row"><div class="k">核心算法</div><div class="v">REPBNet（双时相输入 x1 / x2，256×256）</div></div>
+    <div class="row"><div class="k">数据集</div><div class="v">LEVIR&#8209;CD（建筑物变化检测）</div></div>
+    <div class="row"><div class="k">部署平台</div><div class="v">RDK X5（bayes&#8209;e · int8 量化 · 4&nbsp;GB）</div></div>
+    <div class="row"><div class="k">作&nbsp;&nbsp;&nbsp;&nbsp;者</div><div class="v">　</div></div>
+    <div class="row"><div class="k">学&nbsp;&nbsp;&nbsp;&nbsp;号</div><div class="v">　</div></div>
+    <div class="row"><div class="k">指导教师</div><div class="v">　</div></div>
+  </div>
+
+  <div class="rule-bot"></div>
+  <div class="foot">2026 年 9 月</div>
+</div>
+
+<!-- ========== 方案 B ========== -->
+<div class="page" id="b">
+  <div class="bar"></div>
+  <div class="grid"></div>
+  <div class="glow"></div>
+  <div class="glow2"></div>
+
+  <div class="inner">
+    <div class="brand">RSI&#8209;EDGEVISION</div>
+    <div class="brandline"></div>
+
+    <h1>REPBNet × RDK X5<br>端侧遥感变化检测</h1>
+    <div class="en">REPBNET ALGORITHM ON RDK X5 · EDGE&#8209;SIDE DEPLOYMENT</div>
+
+    <h2>算法 × 芯片 · int8 · 4&nbsp;GB</h2>
+    <div class="cap">LEVIR&#8209;CD &nbsp;|&nbsp; PyTorch → ONNX → BPU &nbsp;|&nbsp; 256×256</div>
+
+    <div class="cards">
+      <div class="card"><div class="n">0.8782</div><div class="t">PRECISION</div></div>
+      <div class="card"><div class="n">0.8517</div><div class="t">RECALL</div></div>
+      <div class="card"><div class="n">0.8648</div><div class="t">F1</div></div>
+      <div class="card"><div class="n">0.7617</div><div class="t">IoU</div></div>
+    </div>
+
+    <div class="chain">PyTorch <span>→</span> ONNX <span>→</span> hb_mapper <span>→</span> BPU int8</div>
+
+    <div class="foot"><div>作 者　　</div><div>2026 年 9 月</div></div>
+  </div>
+</div>
+
+</body></html>

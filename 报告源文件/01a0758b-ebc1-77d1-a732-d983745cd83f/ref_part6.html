@@ -1,0 +1,85 @@
+
+<style>
+.lblrow{display:flex;gap:8px;margin:8px 0 -4px}
+.lblrow span{flex:1;text-align:center;font-size:9pt;font-weight:600;color:#1a5fb4;background:#f0f5fb;border:1px solid var(--line);border-radius:5px;padding:4px 2px}
+</style>
+
+<!-- ============ 端侧系统 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>09 / 端侧系统</div></div>
+
+  <h1 class="sec">跑在板子上的完整系统</h1>
+  <div class="subsec">不是一段推理脚本，而是可操作、可演示、可交付的工程化工作站</div>
+
+  <table>
+    <tr><th style="width:130px">能力</th><th>说明</th></tr>
+    <tr><td class="k">变化检测</td><td>选择影像目录与 A/B 影像对，一键推理，输出预测掩膜、概率热力图与叠加图</td></tr>
+    <tr><td class="k">精度评估</td><td>对照人工标注，实时计算 Precision / Recall / F1 / IoU 与混淆矩阵（TP / FP / FN / TN）</td></tr>
+    <tr><td class="k">误差分析</td><td>四色误差图直观区分：<b style="color:#15803d">TP 正确变化</b>、<b style="color:#b91c1c">FP 误报</b>、<b style="color:#b45309">FN 漏检</b>、<b style="color:#4d7c0f">TN 正确负例</b>，并支持点选变化区域高亮定位</td></tr>
+    <tr><td class="k">AI 语义解释</td><td>接入视觉大模型，自动用自然语言描述"哪里变了、变成了什么"，把像素结果翻译成业务语言</td></tr>
+    <tr><td class="k">设备监控</td><td>板端温度、内存、CPU 占用实时折线图，体现边缘设备的真实运行状态</td></tr>
+    <tr><td class="k">一键导出</td><td>把当前结果图、指标、AI 文字一次性导出，便于归档与汇报</td></tr>
+  </table>
+
+  <h2 class="blk">端侧工程细节</h2>
+  <ul>
+    <li><b>界面自适应：</b>针对板载 1024×600 屏做了布局适配，可直接用触摸操作；</li>
+    <li><b>开机即用：</b>提供桌面快捷方式，一键启动服务并自动全屏打开工作页面；</li>
+    <li><b>无需外网：</b>检测与评估全链路本地完成，仅在调用 AI 解释时才需要联网。</li>
+  </ul>
+
+  <div class="tip">
+    <b>为什么这很重要：</b>在 4 GB 内存的板卡上同时跑推理服务、图像处理与前端渲染，
+    本身就是一次真实的资源约束下的工程权衡。系统能稳定运行，说明端侧承载完整业务闭环是可行的。
+  </div>
+
+  <div class="pnum">9</div>
+</div>
+
+<!-- ============ 答辩要点 ============ -->
+<div class="page">
+  <div class="phead"><div><b>RSI-EdgeVision</b> · 参赛参考资料</div><div>10 / 答辩要点</div></div>
+
+  <h1 class="sec">答辩要点与话术</h1>
+  <div class="subsec">针对 AI + 硬件赛道，评委最可能追问的三件事</div>
+
+  <h2 class="blk">三个必须讲清楚的点</h2>
+  <table>
+    <tr><th style="width:170px">评委关心</th><th>建议话术</th></tr>
+    <tr>
+      <td class="k">为什么算法要这么设计</td>
+      <td>"我们的网络在<b>设计阶段就为量化做了预留</b>——全卷积结构、权重共享、没有动态控制流，所以转 int8 时不会遇到算子不支持或数值坍塌。如果换成一个带注意力的重网络，量化环节很可能直接卡住。"</td>
+    </tr>
+    <tr>
+      <td class="k">量化为什么没掉精度</td>
+      <td>"关键在<b>校准数据是真实的</b>。我们踩过坑：一开始用 <code>skip</code> 模式让工具随机校准，板端输出全 0。后来改成从训练集抽 60 组真实影像、按训练同款预处理生成校准集，量化后才恢复到 F1 0.8648，和浮点模型基本持平。"</td>
+    </tr>
+    <tr>
+      <td class="k">这套方案能复制吗</td>
+      <td>"能。链路是通用的：<b>换成别的网络，只要改 march 和输入规格两个参数就能复用</b>。我们把它整理成了完整教程，包括六类常见报错的定位与解决。"</td>
+    </tr>
+  </table>
+
+  <h2 class="blk">预判提问与应对</h2>
+  <table>
+    <tr><td class="k">为什么不用大模型</td><td>端侧没有 GPU，4 GB 内存装不下；本任务需要的是<b>像素级定位</b>而非语义描述，轻量专用网络在精度与成本上更优。实际上我们还把大模型用在了"解释结果"这一环，各司其职。</td></tr>
+    <tr><td class="k">精度还能再高吗</td><td>可以，但当前瓶颈不在算法而在<b>量化策略</b>。后续计划引入<b>混合精度量化</b>（敏感层保 fp16）与<b>自适应阈值</b>，预期能在体积增加可控的前提下进一步提点。</td></tr>
+    <tr><td class="k">实时性怎么样</td><td>单帧 256×256 双时相输入，在 BPU 上以 latency 模式编译、单核运行。<b>具体帧率与功耗数据尚未系统测量</b>，这是我们下一步要补齐的测试项。</td></tr>
+    <tr><td class="k">数据从哪来</td><td>训练与评测使用公开数据集 LEVIR-CD（637 对 1024×1024 影像，裁剪为 256×256 后共 10192 组），另在 UAV 数据集上验证了跨数据集泛化能力。</td></tr>
+  </table>
+
+  <div class="tip warn">
+    <b>诚实建议：</b>上面"实时性与功耗"那一项目前确实缺数据。
+    建议在赛前补一次实测——评委问到吞吐、延迟或能效时，有数字比有说法更可靠。
+  </div>
+
+  <h2 class="blk">一句话收尾</h2>
+  <div class="tip">
+    我们做的不是"把模型搬到板子上"，而是<b>让算法与硬件互相妥协、共同设计</b>——
+    在 4 GB 内存的国产边缘算力上，把像素级遥感解译的精度、体积与可运行性同时做到了可交付的水平。
+  </div>
+
+  <div class="pnum">10</div>
+</div>
+
+</body></html>

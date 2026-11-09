@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=遥感变化检测
+Name[zh_CN]=遥感变化检测
+GenericName=Remote Sensing Change Detection
+Comment=启动遥感变化检测网页(自动全屏)
+Exec=/usr/bin/python3 /home/sunrise/deploy/webapp.py
+Icon=applications-internet
+Terminal=true
+Categories=Utility;Science;
+StartupNotify=true

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1040" viewBox="0 0 1400 1040">
+<defs><filter id="sh" x="-8%" y="-14%" width="116%" height="132%"><feDropShadow dx="0" dy="1.5" stdDeviation="2.6" flood-color="#0F1A24" flood-opacity="0.09"/></filter></defs>
+<style>
+ text { font-family: "Microsoft YaHei","SimHei",sans-serif; fill:#0F1A24; }
+ .mono { font-family:"Consolas","Courier New",monospace; }
+ .h1{font-size:32px;font-weight:bold;} .sub{font-size:18.5px;fill:#5C6B7A;}
+ .mod{font-size:21.5px;font-weight:bold;} .act{font-size:17px;fill:#5C6B7A;}
+ .pill{font-size:14px;fill:#12325B;} .lab{font-size:13px;fill:#8A97A4;letter-spacing:1.2px;}
+ .art{font-size:17.5px;font-weight:bold;} .sz{font-size:17px;font-weight:bold;fill:#1F5C99;}
+ .num{font-size:20px;font-weight:bold;fill:#FFFFFF;} .cap{font-size:17px;fill:#0F1A24;}
+ .capn{font-size:15px;fill:#8A97A4;}
+</style>
+<rect x="0" y="0" width="1400" height="1040" fill="#FFFFFF"/>
+<text class="h1" x="70" y="60">端侧部署全链路</text>
+<text class="sub" x="70" y="96">PyTorch 浮点权重 → ONNX → 真实数据校准 → int8 定点 → RDK X5 BPU 推理</text>
+<line x1="70" y1="120" x2="1330" y2="120" stroke="#E3E8EE" stroke-width="1.4"/>
+<rect x="70" y="144" width="1260" height="100" rx="10" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<rect x="70" y="156" width="4.5" height="76" rx="2.2" fill="#7C8B9A"/>
+<circle cx="116" cy="194" r="21" fill="#7C8B9A"/>
+<text class="num" x="116" y="201" text-anchor="middle">1</text>
+<text class="mod mono" x="152" y="188">best_model.pth</text>
+<rect x="470" y="170" width="100" height="28" rx="14" fill="#E8F0F8" stroke="#CBD9E7" stroke-width="1"/>
+<text class="pill" x="520" y="190" text-anchor="middle">约束层</text>
+<text class="act" x="152" y="220">PyTorch 训练权重 · 2 477 892 参数</text>
+<rect x="960" y="165" width="350" height="58" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1"/>
+<text class="lab" x="976" y="185">产物</text>
+<text class="art mono" x="976" y="212">best_model.pth</text>
+<text class="sz" x="1294" y="212" text-anchor="end">10.2 MB</text>
+<line x1="116" y1="244" x2="116" y2="264" stroke="#D6DEE6" stroke-width="1.6"/>
+<rect x="70" y="264" width="1260" height="100" rx="10" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<rect x="70" y="276" width="4.5" height="76" rx="2.2" fill="#7C8B9A"/>
+<circle cx="116" cy="314" r="21" fill="#7C8B9A"/>
+<text class="num" x="116" y="321" text-anchor="middle">2</text>
+<text class="mod mono" x="152" y="308">export_onnx.py</text>
+<rect x="470" y="290" width="100" height="28" rx="14" fill="#E8F0F8" stroke="#CBD9E7" stroke-width="1"/>
+<text class="pill" x="520" y="310" text-anchor="middle">格式层</text>
+<text class="act" x="152" y="340">导出 ONNX 通用计算图 · 固定输入轴与算子版本</text>
+<rect x="960" y="285" width="350" height="58" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1"/>
+<text class="lab" x="976" y="305">产物</text>
+<text class="art mono" x="976" y="332">best_model.onnx</text>
+<text class="sz" x="1294" y="332" text-anchor="end">opset 11</text>
+<line x1="116" y1="364" x2="116" y2="384" stroke="#D6DEE6" stroke-width="1.6"/>
+<rect x="70" y="384" width="1260" height="100" rx="10" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<rect x="70" y="396" width="4.5" height="76" rx="2.2" fill="#7C8B9A"/>
+<circle cx="116" cy="434" r="21" fill="#7C8B9A"/>
+<text class="num" x="116" y="441" text-anchor="middle">3</text>
+<text class="mod mono" x="152" y="428">make_cal_data.py</text>
+<rect x="470" y="410" width="100" height="28" rx="14" fill="#E8F0F8" stroke="#CBD9E7" stroke-width="1"/>
+<text class="pill" x="520" y="430" text-anchor="middle">量化层</text>
+<text class="act" x="152" y="460">取 60 组真实 A/B，按与训练一致的预处理生成 float32 校准集</text>
+<rect x="960" y="405" width="350" height="58" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1"/>
+<text class="lab" x="976" y="425">产物</text>
+<text class="art mono" x="976" y="452">cal_data</text>
+<text class="sz" x="1294" y="452" text-anchor="end">60 组 × 768 KB</text>
+<line x1="116" y1="484" x2="116" y2="504" stroke="#D6DEE6" stroke-width="1.6"/>
+<rect x="70" y="504" width="1260" height="100" rx="10" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<rect x="70" y="516" width="4.5" height="76" rx="2.2" fill="#7C8B9A"/>
+<circle cx="116" cy="554" r="21" fill="#7C8B9A"/>
+<text class="num" x="116" y="561" text-anchor="middle">4</text>
+<text class="mod mono" x="152" y="548">hb_mapper makertbin</text>
+<rect x="470" y="530" width="100" height="28" rx="14" fill="#E8F0F8" stroke="#CBD9E7" stroke-width="1"/>
+<text class="pill" x="520" y="550" text-anchor="middle">量化 · 编译</text>
+<text class="act" x="152" y="580">按 config_real.yaml 执行 int8 量化与图优化</text>
+<rect x="960" y="525" width="350" height="58" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1"/>
+<text class="lab" x="976" y="545">产物</text>
+<text class="art mono" x="976" y="572">model_output</text>
+<text class="sz" x="1294" y="572" text-anchor="end">量化报告</text>
+<line x1="116" y1="604" x2="116" y2="624" stroke="#D6DEE6" stroke-width="1.6"/>
+<rect x="70" y="624" width="1260" height="100" rx="10" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<rect x="70" y="636" width="4.5" height="76" rx="2.2" fill="#1F5C99"/>
+<circle cx="116" cy="674" r="21" fill="#1F5C99"/>
+<text class="num" x="116" y="681" text-anchor="middle">5</text>
+<text class="mod mono" x="152" y="668">repbnet_cd.bin</text>
+<rect x="470" y="650" width="100" height="28" rx="14" fill="#E8F0F8" stroke="#CBD9E7" stroke-width="1"/>
+<text class="pill" x="520" y="670" text-anchor="middle">验证层</text>
+<text class="act" x="152" y="700">RDK X5 可执行定点模型 · 3 279 032 字节 · 较浮点压缩约 68%</text>
+<rect x="960" y="645" width="350" height="58" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1"/>
+<text class="lab" x="976" y="665">产物</text>
+<text class="art mono" x="976" y="692">repbnet_cd.bin</text>
+<text class="sz" x="1294" y="692" text-anchor="end">3.2 MB</text>
+<line x1="116" y1="724" x2="116" y2="744" stroke="#D6DEE6" stroke-width="1.6"/>
+<rect x="70" y="744" width="1260" height="100" rx="10" fill="#FFFFFF" stroke="#E3E8EE" stroke-width="1.3" filter="url(#sh)"/>
+<rect x="70" y="756" width="4.5" height="76" rx="2.2" fill="#17795E"/>
+<circle cx="116" cy="794" r="21" fill="#17795E"/>
+<text class="num" x="116" y="801" text-anchor="middle">6</text>
+<text class="mod mono" x="152" y="788">板端 BPU + hbm_runtime</text>
+<rect x="470" y="770" width="100" height="28" rx="14" fill="#E8F0F8" stroke="#CBD9E7" stroke-width="1"/>
+<text class="pill" x="520" y="790" text-anchor="middle">运行层</text>
+<text class="act" x="152" y="820">板卡加载 .bin 推理 · 输入 x1 / x2 各 [1, 3, 256, 256]</text>
+<rect x="960" y="765" width="350" height="58" rx="8" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1"/>
+<text class="lab" x="976" y="785">产物</text>
+<text class="art mono" x="976" y="812">change_map</text>
+<text class="sz" x="1294" y="812" text-anchor="end">接入工作站</text>
+<rect x="70" y="870" width="1260" height="140" rx="10" fill="#F8FAFC" stroke="#E3E8EE" stroke-width="1.3"/>
+<text class="lab" x="98" y="900">模型体积</text>
+<text class="cap" x="98" y="932">PyTorch 浮点权重</text>
+<rect x="370" y="918" width="500" height="18" rx="4" fill="#C3CDD8"/>
+<text class="cap" x="886" y="933">10.2 MB</text>
+<text class="cap" x="98" y="976">RDK X5 定点模型</text>
+<rect x="370" y="962" width="157" height="18" rx="4" fill="#1F5C99"/>
+<text class="cap" x="543" y="977">3.2 MB</text>
+<rect x="640" y="954" width="130" height="32" rx="16" fill="#E6F4EF" stroke="#B7DDCE" stroke-width="1"/>
+<text class="pill" x="705" y="975" text-anchor="middle" style="fill:#17795E;font-weight:bold;">压缩 68%</text>
+<text class="capn" x="800" y="977">3 279 032 字节 · 量化模型体积</text>
+</svg>
+
